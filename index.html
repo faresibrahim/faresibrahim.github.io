@@ -20,6 +20,7 @@
   html { scroll-behavior:smooth; }
   body { background:var(--bg); color:var(--text); font-family:'Segoe UI',sans-serif; overflow-x:hidden; }
   #particles { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+
   nav {
     position:fixed; top:0; width:100%; z-index:100;
     background:rgba(10,10,15,0.85); backdrop-filter:blur(12px);
@@ -31,6 +32,7 @@
   .nav-links { display:flex; gap:1.5rem; list-style:none; flex-wrap:wrap; }
   .nav-links a { color:var(--muted); text-decoration:none; font-size:.85rem; letter-spacing:1px; transition:.3s; }
   .nav-links a:hover { color:var(--accent); }
+
   section { position:relative; z-index:1; padding:5rem 2rem; max-width:1100px; margin:0 auto; }
   #hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding-top:6rem; }
   .hero-pre { font-family:var(--font-mono); color:var(--accent); font-size:.9rem; letter-spacing:3px; margin-bottom:.75rem; }
@@ -76,15 +78,32 @@
 
   /* PROJECTS */
   .projects-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; }
-  .project-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:1.75rem; transition:.3s; display:flex; flex-direction:column; gap:1rem; }
-  .project-card:hover { border-color:var(--accent); transform:translateY(-6px); box-shadow:0 12px 40px rgba(0,212,255,.12); }
+  .project-card {
+    background:var(--card); border:1px solid var(--border); border-radius:14px; padding:1.75rem;
+    transition:.35s cubic-bezier(.34,1.26,.64,1); display:flex; flex-direction:column; gap:1rem;
+    position:relative; cursor:pointer; overflow:hidden;
+  }
+  .project-card::before {
+    content:''; position:absolute; inset:0; border-radius:14px; opacity:0; transition:.3s;
+    background:radial-gradient(circle at 50% 0%, rgba(0,212,255,.08) 0%, transparent 70%);
+  }
+  .project-card:hover { border-color:var(--accent); transform:translateY(-8px); box-shadow:0 20px 50px rgba(0,212,255,.14); }
+  .project-card:hover::before { opacity:1; }
+  .project-card-cta {
+    position:absolute; bottom:1.25rem; right:1.25rem;
+    font-family:var(--font-mono); font-size:.66rem; letter-spacing:2px; color:var(--accent);
+    background:rgba(0,212,255,.1); border:1px solid rgba(0,212,255,.25);
+    padding:.28rem .65rem; border-radius:20px; opacity:0; transition:.3s;
+    transform:translateY(6px);
+  }
+  .project-card:hover .project-card-cta { opacity:1; transform:translateY(0); }
   .project-header { display:flex; justify-content:space-between; align-items:flex-start; }
-  .project-icon { font-size:1.8rem; }
-  .project-link { color:var(--muted); text-decoration:none; font-size:.85rem; transition:.3s; border:1px solid var(--border); padding:.3rem .7rem; border-radius:6px; font-family:var(--font-mono); }
+  .project-icon { font-size:2rem; filter:drop-shadow(0 0 12px rgba(0,212,255,.35)); }
+  .project-link { color:var(--muted); text-decoration:none; font-size:.8rem; transition:.3s; border:1px solid var(--border); padding:.28rem .65rem; border-radius:6px; font-family:var(--font-mono); }
   .project-link:hover { color:var(--accent); border-color:var(--accent); }
   .project-name { font-size:1.15rem; font-weight:700; color:var(--text); }
   .project-desc { color:var(--muted); font-size:.9rem; line-height:1.7; }
-  .project-stack { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.5rem; }
+  .project-stack { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:auto; padding-top:.25rem; }
   .stack-tag { background:rgba(124,58,237,.12); color:#a78bfa; border:1px solid rgba(124,58,237,.25); border-radius:20px; padding:.25rem .65rem; font-size:.72rem; font-family:var(--font-mono); }
 
   /* EXPERIENCE */
@@ -106,8 +125,6 @@
   .course-icon { font-size:1.8rem; flex-shrink:0; }
   .course-name { font-size:1rem; font-weight:700; color:var(--text); margin-bottom:.3rem; }
   .course-org { font-family:var(--font-mono); font-size:.75rem; color:var(--accent); letter-spacing:1px; }
-
-  /* HOBBIES */
   .hobby-org { font-family:var(--font-mono); font-size:.72rem; color:var(--muted); margin-top:.3rem; line-height:1.6; }
 
   /* CONTACT */
@@ -122,11 +139,172 @@
   .fade-in { opacity:0; transform:translateY(30px); transition:opacity .7s ease, transform .7s ease; }
   .fade-in.visible { opacity:1; transform:translateY(0); }
 
+  /* =================== MODAL SYSTEM =================== */
+  .modal-overlay {
+    position:fixed; inset:0; z-index:500;
+    background:rgba(5,5,12,0.88); backdrop-filter:blur(18px);
+    display:flex; align-items:center; justify-content:center;
+    padding:1.5rem; opacity:0; pointer-events:none;
+    transition:opacity .3s ease;
+  }
+  .modal-overlay.open { opacity:1; pointer-events:all; }
+
+  .modal-panel {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:22px; max-width:820px; width:100%;
+    max-height:88vh; overflow-y:auto;
+    position:relative;
+    scrollbar-width:thin; scrollbar-color:var(--border) transparent;
+    transform:translateY(60px) scale(0.93);
+    transition:transform .5s cubic-bezier(.34,1.4,.64,1);
+    box-shadow:0 60px 120px rgba(0,0,0,.7), 0 0 0 1px rgba(0,212,255,.06);
+  }
+  .modal-overlay.open .modal-panel { transform:translateY(0) scale(1); }
+
+  .modal-close-btn {
+    position:absolute; top:1rem; right:1rem; z-index:30;
+    width:38px; height:38px; border-radius:50%;
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+    color:var(--text); font-size:1.3rem; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:.25s; line-height:1;
+  }
+  .modal-close-btn:hover { background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.28); transform:rotate(90deg) scale(1.1); }
+
+  /* MODAL HERO */
+  .modal-hero {
+    padding:2.75rem 2.25rem 2rem;
+    border-radius:22px 22px 0 0;
+    position:relative; overflow:hidden;
+    min-height:170px; display:flex; align-items:flex-end;
+  }
+  .modal-hero-pattern {
+    position:absolute; inset:0; width:100%; height:100%;
+    opacity:1; pointer-events:none;
+  }
+  .modal-hero-glow {
+    position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(ellipse at 30% 50%, var(--glow-color,rgba(0,212,255,.18)) 0%, transparent 65%);
+  }
+  .modal-hero-content { position:relative; z-index:2; width:100%; }
+  .modal-project-type {
+    font-family:var(--font-mono); font-size:.7rem; letter-spacing:3px;
+    color:rgba(255,255,255,.45); margin-bottom:.6rem;
+    display:flex; align-items:center; gap:.5rem;
+  }
+  .modal-project-type::before { content:'//'; color:var(--hero-accent,var(--accent)); font-size:.8rem; }
+  .modal-hero-row { display:flex; align-items:center; gap:1rem; margin-bottom:.75rem; flex-wrap:wrap; }
+  .modal-hero-icon { font-size:2.6rem; filter:drop-shadow(0 0 18px var(--hero-glow,rgba(0,212,255,.6))); }
+  .modal-project-title { font-size:clamp(1.6rem,4vw,2.2rem); font-weight:800; color:#fff; line-height:1.1; }
+  .modal-badges { display:flex; gap:.45rem; flex-wrap:wrap; }
+  .modal-badge {
+    font-family:var(--font-mono); font-size:.64rem; letter-spacing:1px;
+    padding:.22rem .6rem; border-radius:20px; border:1px solid; white-space:nowrap;
+  }
+  .badge-active   { color:#4ade80; border-color:rgba(74,222,128,.35); background:rgba(74,222,128,.08); }
+  .badge-done     { color:#00d4ff; border-color:rgba(0,212,255,.35); background:rgba(0,212,255,.08); }
+  .badge-role     { color:#a78bfa; border-color:rgba(167,139,250,.35); background:rgba(167,139,250,.08); }
+  .badge-year     { color:#94a3b8; border-color:rgba(148,163,184,.25); background:rgba(148,163,184,.06); }
+  .badge-design   { color:#fb7185; border-color:rgba(251,113,133,.35); background:rgba(251,113,133,.08); }
+
+  /* MODAL BODY */
+  .modal-body { padding:2rem 2.25rem 2.25rem; display:flex; flex-direction:column; gap:1.75rem; }
+
+  .modal-meta {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+    gap:.75rem; padding:1.25rem 1.5rem;
+    background:var(--surface); border-radius:12px; border:1px solid var(--border);
+  }
+  .modal-meta-item { display:flex; flex-direction:column; gap:.3rem; }
+  .modal-meta-label { font-family:var(--font-mono); font-size:.62rem; letter-spacing:2px; color:var(--muted); text-transform:uppercase; }
+  .modal-meta-value { font-size:.88rem; font-weight:600; color:var(--text); }
+  .meta-green { color:#4ade80; }
+  .meta-cyan  { color:var(--accent); }
+  .meta-rose  { color:#fb7185; }
+  .meta-violet{ color:#a78bfa; }
+
+  .modal-divider { height:1px; background:var(--border); border:none; }
+
+  .modal-section-label {
+    font-family:var(--font-mono); font-size:.68rem; letter-spacing:3px;
+    color:var(--section-accent,var(--accent)); margin-bottom:.9rem;
+    display:flex; align-items:center; gap:.6rem;
+  }
+  .modal-section-label::before { content:''; display:inline-block; width:18px; height:1px; background:var(--section-accent,var(--accent)); }
+
+  .modal-overview { color:var(--muted); line-height:1.95; font-size:.93rem; }
+  .modal-overview strong { color:var(--text); font-weight:600; }
+
+  .modal-features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:.7rem; }
+  .modal-feature {
+    display:flex; align-items:flex-start; gap:.75rem;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:10px; padding:.9rem 1rem; transition:.25s;
+  }
+  .modal-feature:hover { border-color:rgba(0,212,255,.25); background:rgba(0,212,255,.03); }
+  .modal-feature-icon { font-size:1.25rem; flex-shrink:0; line-height:1; margin-top:.05rem; }
+  .modal-feature-name { font-size:.86rem; font-weight:700; color:var(--text); margin-bottom:.2rem; }
+  .modal-feature-desc { font-size:.76rem; color:var(--muted); line-height:1.55; }
+
+  .modal-highlight {
+    background:linear-gradient(135deg, rgba(0,212,255,.04) 0%, rgba(124,58,237,.06) 100%);
+    border:1px solid rgba(0,212,255,.14); border-radius:12px; padding:1.25rem 1.5rem;
+  }
+  .modal-highlight-title { font-family:var(--font-mono); color:var(--accent); font-size:.68rem; letter-spacing:2.5px; margin-bottom:.8rem; }
+  .modal-highlight-list { list-style:none; display:flex; flex-direction:column; gap:.45rem; }
+  .modal-highlight-list li { color:var(--muted); font-size:.86rem; padding-left:1.2rem; position:relative; line-height:1.65; }
+  .modal-highlight-list li::before { content:'▹'; position:absolute; left:0; color:var(--accent); font-size:.8rem; }
+
+  .modal-process-steps { display:flex; flex-direction:column; gap:.5rem; }
+  .modal-step {
+    display:flex; align-items:flex-start; gap:.9rem;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:10px; padding:.85rem 1rem; transition:.25s;
+  }
+  .modal-step:hover { border-color:rgba(251,113,133,.25); }
+  .modal-step-num {
+    font-family:var(--font-mono); font-size:.7rem; font-weight:700;
+    color:var(--step-color,#fb7185);
+    background:var(--step-bg,rgba(251,113,133,.1));
+    border:1px solid var(--step-border,rgba(251,113,133,.25));
+    border-radius:6px; padding:.2rem .45rem; flex-shrink:0; margin-top:.1rem;
+  }
+  .modal-step-title { font-size:.86rem; font-weight:700; color:var(--text); margin-bottom:.15rem; }
+  .modal-step-desc { font-size:.76rem; color:var(--muted); line-height:1.5; }
+
+  .modal-stack-wrap { display:flex; flex-wrap:wrap; gap:.5rem; }
+  .modal-stack-tag {
+    background:rgba(124,58,237,.1); color:#a78bfa;
+    border:1px solid rgba(124,58,237,.28); border-radius:20px;
+    padding:.32rem .85rem; font-size:.76rem; font-family:var(--font-mono); transition:.2s;
+  }
+  .modal-stack-tag:hover { background:rgba(124,58,237,.2); border-color:rgba(124,58,237,.5); }
+
+  .modal-links { display:flex; gap:.85rem; flex-wrap:wrap; padding-top:.25rem; border-top:1px solid var(--border); }
+  .btn-ghost {
+    background:transparent; color:var(--muted); border:1px solid var(--border);
+    padding:.6rem 1.35rem; border-radius:6px; font-size:.84rem; font-weight:600;
+    cursor:pointer; text-decoration:none; transition:.3s;
+    display:inline-flex; align-items:center; gap:.4rem;
+  }
+  .btn-ghost:hover { color:var(--accent); border-color:var(--accent); }
+
+  /* Per-project hero backgrounds */
+  .hero-physio  { background:linear-gradient(145deg, #010d1a 0%, #012033 55%, #010d1a 100%); }
+  .hero-maqam   { background:linear-gradient(145deg, #0d0020 0%, #1c0044 55%, #0d0020 100%); }
+  .hero-aman    { background:linear-gradient(145deg, #1a0010 0%, #30001e 55%, #1a0010 100%); }
+  .hero-finder  { background:linear-gradient(145deg, #001208 0%, #002516 55%, #001208 100%); }
+
   @media(max-width:700px) {
     .about-grid { grid-template-columns:1fr; }
     .about-left { flex-direction:column; align-items:center; }
     nav { padding:1rem 1.25rem; }
     .nav-links { gap:.75rem; }
+    .modal-body { padding:1.25rem 1.25rem 1.5rem; }
+    .modal-hero { padding:2rem 1.25rem 1.5rem; }
+    .modal-meta { grid-template-columns:1fr 1fr; }
+    .modal-panel { border-radius:16px; }
+    .modal-hero { border-radius:16px 16px 0 0; }
   }
 </style>
 </head>
@@ -152,7 +330,7 @@
   <div class="hero-pre">// Hello, World!</div>
   <h1 class="hero-name">Fares Ibrahim</h1>
   <div class="hero-title"><span id="typed"></span><span class="cursor"></span></div>
-  <p class="hero-desc">Junior Full-Stack Developer building real-world apps with Flutter & ASP.NET Core. Passionate about clean architecture, great UX, and shipping things that matter.</p>
+  <p class="hero-desc">Junior Full-Stack Developer building real-world apps with Flutter &amp; ASP.NET Core. Passionate about clean architecture, great UX, and shipping things that matter.</p>
   <div class="hero-btns">
     <a href="#projects" class="btn btn-primary">View Projects</a>
     <a href="#contact" class="btn btn-outline">Get In Touch</a>
@@ -246,42 +424,47 @@
     <h2 class="section-title">Projects</h2>
     <div class="projects-grid">
 
-      <div class="project-card">
+      <!-- PhysioLink -->
+      <div class="project-card" onclick="openModal('physiolink')">
         <div class="project-header">
           <span class="project-icon">🦴</span>
-          <a href="https://github.com/faresibrahim" target="_blank" class="project-link">GitHub ↗</a>
+          <a href="https://github.com/faresibrahim" target="_blank" class="project-link" onclick="event.stopPropagation()">GitHub ↗</a>
         </div>
         <div class="project-name">PhysioLink</div>
-        <div class="project-desc">A full-stack physiotherapy clinic management platform. Flutter patient mobile app + ASP.NET Core REST API with multi-tenant architecture, appointment management, exercise assignment, and a Phase 2 admin panel.</div>
+        <div class="project-desc">A full-stack physiotherapy clinic management platform. Flutter patient mobile app + ASP.NET Core REST API with multi-tenant architecture, appointment management, and exercise assignment.</div>
         <div class="project-stack">
           <span class="stack-tag">Flutter</span><span class="stack-tag">ASP.NET Core</span>
           <span class="stack-tag">EF Core</span><span class="stack-tag">SQL Server</span>
           <span class="stack-tag">JWT</span><span class="stack-tag">Riverpod</span>
         </div>
+        <span class="project-card-cta">EXPLORE ↗</span>
       </div>
 
-      <div class="project-card">
+      <!-- Maqam -->
+      <div class="project-card" onclick="openModal('maqam')">
         <div class="project-header">
           <span class="project-icon">🎸</span>
-          <a href="https://github.com/faresibrahim/maqam-ecommerce-website" target="_blank" class="project-link">GitHub ↗</a>
+          <a href="https://github.com/faresibrahim/maqam-ecommerce-website" target="_blank" class="project-link" onclick="event.stopPropagation()">GitHub ↗</a>
         </div>
         <div class="project-name">Maqam — Music E-Commerce</div>
-        <div class="project-desc">A full-stack e-commerce web application for musical instruments. Features product catalog browsing, category filtering, shopping cart, order processing, and user authentication with role-based access.</div>
+        <div class="project-desc">A full-stack e-commerce web application for musical instruments. Features product catalog browsing, category filtering, shopping cart, order processing, and role-based authentication.</div>
         <div class="project-stack">
           <span class="stack-tag">ASP.NET Core MVC</span>
           <span class="stack-tag">EF Core</span><span class="stack-tag">SQL Server</span>
           <span class="stack-tag">ASP.NET Identity</span>
           <span class="stack-tag">Bootstrap</span><span class="stack-tag">C#</span>
         </div>
+        <span class="project-card-cta">EXPLORE ↗</span>
       </div>
 
-      <div class="project-card">
+      <!-- Aman -->
+      <div class="project-card" onclick="openModal('aman')">
         <div class="project-header">
           <span class="project-icon">🛡️</span>
-          <a href="https://www.behance.net/gallery/236078101/Aman-Mobile-App" target="_blank" class="project-link">Behance ↗</a>
+          <a href="https://www.behance.net/gallery/236078101/Aman-Mobile-App" target="_blank" class="project-link" onclick="event.stopPropagation()">Behance ↗</a>
         </div>
         <div class="project-name">Aman (أمان) — Mental Health App</div>
-        <div class="project-desc">A UI/UX case study for a mobile app designed for women who have experienced abuse, assault, or trauma. Features journaling, emotional support circles, specialist consultations, and daily positive notes. Research-driven through user interviews, personas, and competitive analysis.</div>
+        <div class="project-desc">A UI/UX case study for a mobile app designed for women who have experienced abuse, assault, or trauma. Research-driven through user interviews, personas, and competitive analysis.</div>
         <div class="project-stack">
           <span class="stack-tag">Figma</span>
           <span class="stack-tag">UI/UX Design</span>
@@ -289,23 +472,24 @@
           <span class="stack-tag">Prototyping</span>
           <span class="stack-tag">Case Study</span>
         </div>
+        <span class="project-card-cta">EXPLORE ↗</span>
       </div>
 
-      <div class="project-card">
+      <!-- Finder Pal -->
+      <div class="project-card" onclick="openModal('finder')">
         <div class="project-header">
           <span class="project-icon">🤖</span>
-          <a href="https://github.com/eritsen/FinderPal" target="_blank" class="project-link">GitHub ↗</a>
+          <a href="https://github.com/eritsen/FinderPal" target="_blank" class="project-link" onclick="event.stopPropagation()">GitHub ↗</a>
         </div>
         <div class="project-name">Finder Pal — Warehouse Robot</div>
-        <div class="project-desc">A capstone project at University of Michigan-Flint. An intelligent warehouse robot capable of autonomous navigation, object recognition via camera, and precise item placement. Contributed to robot development, led weekly team meetings, and designed the project website.</div>
+        <div class="project-desc">A capstone project at University of Michigan-Flint. An intelligent warehouse robot capable of autonomous navigation, object recognition via camera, and precise item placement.</div>
         <div class="project-stack">
           <span class="stack-tag">Robotics</span>
           <span class="stack-tag">Computer Vision</span>
-          <span class="stack-tag">Autonomous Navigation</span>
-          <span class="stack-tag">HTML</span>
-          <span class="stack-tag">CSS</span>
-          <span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">Autonomous Nav</span>
+          <span class="stack-tag">HTML/CSS/JS</span>
         </div>
+        <span class="project-card-cta">EXPLORE ↗</span>
       </div>
 
     </div>
@@ -322,7 +506,7 @@
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-date">APR 2025 — PRESENT</div>
-        <div class="timeline-role">Digital Systems & Development</div>
+        <div class="timeline-role">Digital Systems &amp; Development</div>
         <div class="timeline-company">Community Development Group (CDG)</div>
         <ul class="timeline-bullets">
           <li>Manage and develop the company website, improving structure, content, and SEO performance to strengthen online visibility.</li>
@@ -423,10 +607,652 @@
 </section>
 
 <footer>
-  <span>// Built with passion & too much coffee — Fares Ibrahim © 2026</span>
+  <span>// Built with passion &amp; too much coffee — Fares Ibrahim © 2026</span>
 </footer>
 
+
+<!-- =================== MODALS =================== -->
+
+<!-- PHYSIOLINK MODAL -->
+<div class="modal-overlay" id="modal-physiolink" onclick="handleOverlayClick(event,'physiolink')">
+  <div class="modal-panel" role="dialog" aria-label="PhysioLink project details">
+    <button class="modal-close-btn" onclick="closeModal('physiolink')" aria-label="Close">×</button>
+
+    <div class="modal-hero hero-physio" style="--glow-color:rgba(0,212,255,.2);--hero-accent:#00d4ff;--hero-glow:rgba(0,212,255,.7)">
+      <svg class="modal-hero-pattern" viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="gp1" cx="30%" cy="50%"><stop offset="0%" stop-color="#00d4ff" stop-opacity=".18"/><stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="820" height="200" fill="url(#gp1)"/>
+        <!-- dot grid -->
+        <g fill="#00d4ff" opacity=".25">
+          <circle cx="40" cy="30" r="1.5"/><circle cx="120" cy="30" r="1.5"/><circle cx="200" cy="30" r="1.5"/><circle cx="280" cy="30" r="1.5"/><circle cx="360" cy="30" r="1.5"/><circle cx="440" cy="30" r="1.5"/><circle cx="520" cy="30" r="1.5"/><circle cx="600" cy="30" r="1.5"/><circle cx="680" cy="30" r="1.5"/><circle cx="760" cy="30" r="1.5"/>
+          <circle cx="40" cy="90" r="1.5"/><circle cx="120" cy="90" r="1.5"/><circle cx="200" cy="90" r="1.5"/><circle cx="280" cy="90" r="1.5"/><circle cx="360" cy="90" r="1.5"/><circle cx="440" cy="90" r="1.5"/><circle cx="520" cy="90" r="1.5"/><circle cx="600" cy="90" r="1.5"/><circle cx="680" cy="90" r="1.5"/><circle cx="760" cy="90" r="1.5"/>
+          <circle cx="40" cy="150" r="1.5"/><circle cx="120" cy="150" r="1.5"/><circle cx="200" cy="150" r="1.5"/><circle cx="280" cy="150" r="1.5"/><circle cx="360" cy="150" r="1.5"/><circle cx="440" cy="150" r="1.5"/><circle cx="520" cy="150" r="1.5"/><circle cx="600" cy="150" r="1.5"/><circle cx="680" cy="150" r="1.5"/><circle cx="760" cy="150" r="1.5"/>
+        </g>
+        <!-- network lines -->
+        <g stroke="#00d4ff" stroke-width=".6" opacity=".18">
+          <line x1="40" y1="30" x2="200" y2="90"/><line x1="200" y1="90" x2="360" y2="30"/><line x1="360" y1="30" x2="520" y2="90"/>
+          <line x1="520" y1="90" x2="680" y2="30"/><line x1="120" y1="30" x2="280" y2="90"/><line x1="280" y1="90" x2="440" y2="150"/>
+          <line x1="440" y1="150" x2="600" y2="90"/><line x1="600" y1="90" x2="760" y2="150"/>
+        </g>
+        <!-- node highlights -->
+        <circle cx="200" cy="90" r="4" fill="none" stroke="#00d4ff" stroke-width="1" opacity=".5"/>
+        <circle cx="520" cy="90" r="4" fill="none" stroke="#00d4ff" stroke-width="1" opacity=".5"/>
+        <circle cx="360" cy="30" r="4" fill="none" stroke="#00d4ff" stroke-width="1" opacity=".5"/>
+      </svg>
+      <div class="modal-hero-glow"></div>
+      <div class="modal-hero-content">
+        <div class="modal-project-type">Full-Stack Development · Mobile + Web API</div>
+        <div class="modal-hero-row">
+          <span class="modal-hero-icon">🦴</span>
+          <h2 class="modal-project-title">PhysioLink</h2>
+        </div>
+        <div class="modal-badges">
+          <span class="modal-badge badge-active">● In Development</span>
+          <span class="modal-badge badge-role">Solo Developer</span>
+          <span class="modal-badge badge-year">2025 – 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-body">
+
+      <div class="modal-meta">
+        <div class="modal-meta-item"><span class="modal-meta-label">Type</span><span class="modal-meta-value">Full-Stack App</span></div>
+        <div class="modal-meta-item"><span class="modal-meta-label">Platform</span><span class="modal-meta-value">Mobile + API</span></div>
+        <div class="modal-meta-item"><span class="modal-meta-label">Status</span><span class="modal-meta-value meta-green">In Development</span></div>
+        <div class="modal-meta-item"><span class="modal-meta-label">Timeline</span><span class="modal-meta-value">2025 – 2026</span></div>
+      </div>
+
+      <div>
+        <div class="modal-section-label">Overview</div>
+        <p class="modal-overview">
+          PhysioLink is a <strong>full-stack physiotherapy clinic management platform</strong> built around two core products: a <strong>Flutter patient mobile app</strong> and an <strong>ASP.NET Core REST API</strong> backend. The system is architected for multi-tenancy, allowing multiple independent clinics to operate on a single deployment with complete data isolation between tenants. From appointment booking to exercise program delivery, every touchpoint is designed with the patient experience in mind.
+        </p>
+      </div>
+
+      <div>
+        <div class="modal-section-label">Key Features</div>
+        <div class="modal-features-grid">
+          <div class="modal-feature">
+            <span class="modal-feature-icon">📅</span>
+            <div>
+              <div class="modal-feature-name">Appointment Management</div>
+              <div class="modal-feature-desc">Patients book, reschedule, and view upcoming sessions directly from the mobile app</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">💪</span>
+            <div>
+              <div class="modal-feature-name">Exercise Assignment</div>
+              <div class="modal-feature-desc">Physiotherapists build and assign custom exercise programs with instructions and repetition tracking</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🏗️</span>
+            <div>
+              <div class="modal-feature-name">Multi-Tenant Architecture</div>
+              <div class="modal-feature-desc">Clinic-level data isolation — each organization operates in a fully scoped environment</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🔒</span>
+            <div>
+              <div class="modal-feature-name">JWT Authentication</div>
+              <div class="modal-feature-desc">Secure token-based auth with role separation between patients, therapists, and admins</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">📱</span>
+            <div>
+              <div class="modal-feature-name">Flutter Mobile App</div>
+              <div class="modal-feature-desc">Cross-platform patient app built with Riverpod state management and go_router navigation</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🖥️</span>
+            <div>
+              <div class="modal-feature-name">Admin Panel — Phase 2</div>
+              <div class="modal-feature-desc">Full clinic management dashboard covering staff, schedules, and patient records</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-highlight">
+        <div class="modal-highlight-title">ARCHITECTURE HIGHLIGHTS</div>
+        <ul class="modal-highlight-list">
+          <li>Clean Architecture — Domain, Application, Infrastructure, and API layers fully separated</li>
+          <li>Repository Pattern with EF Core for abstracted, testable data access</li>
+          <li>Global Query Filters on tenant ID for seamless multi-tenant data scoping</li>
+          <li>Dependency Injection throughout — every service is composable and replaceable</li>
+          <li>LINQ-powered queries with proper pagination and filtering support</li>
+          <li>EF Core Migrations for versioned, reproducible schema management</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="modal-section-label">Tech Stack</div>
+        <div class="modal-stack-wrap">
+          <span class="modal-stack-tag">Flutter</span><span class="modal-stack-tag">Dart</span>
+          <span class="modal-stack-tag">Riverpod</span><span class="modal-stack-tag">go_router</span>
+          <span class="modal-stack-tag">Freezed</span><span class="modal-stack-tag">ASP.NET Core</span>
+          <span class="modal-stack-tag">C#</span><span class="modal-stack-tag">EF Core</span>
+          <span class="modal-stack-tag">SQL Server</span><span class="modal-stack-tag">JWT Auth</span>
+          <span class="modal-stack-tag">REST API</span><span class="modal-stack-tag">Clean Architecture</span>
+        </div>
+      </div>
+
+      <div class="modal-links">
+        <a href="https://github.com/faresibrahim" target="_blank" class="btn btn-primary">View on GitHub ↗</a>
+        <a href="#contact" class="btn-ghost" onclick="closeModal('physiolink')">✉ Ask Me About This</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- MAQAM MODAL -->
+<div class="modal-overlay" id="modal-maqam" onclick="handleOverlayClick(event,'maqam')">
+  <div class="modal-panel" role="dialog" aria-label="Maqam project details">
+    <button class="modal-close-btn" onclick="closeModal('maqam')" aria-label="Close">×</button>
+
+    <div class="modal-hero hero-maqam" style="--glow-color:rgba(124,58,237,.22);--hero-accent:#a78bfa;--hero-glow:rgba(167,139,250,.6)">
+      <svg class="modal-hero-pattern" viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="gp2" cx="70%" cy="50%"><stop offset="0%" stop-color="#7c3aed" stop-opacity=".22"/><stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="820" height="200" fill="url(#gp2)"/>
+        <!-- musical wave lines -->
+        <g stroke="#a78bfa" stroke-width=".8" fill="none" opacity=".2">
+          <path d="M0,60 Q100,20 200,60 Q300,100 400,60 Q500,20 600,60 Q700,100 820,60"/>
+          <path d="M0,90 Q100,50 200,90 Q300,130 400,90 Q500,50 600,90 Q700,130 820,90"/>
+          <path d="M0,120 Q100,80 200,120 Q300,160 400,120 Q500,80 600,120 Q700,160 820,120"/>
+        </g>
+        <!-- note symbols -->
+        <g fill="#a78bfa" opacity=".3" font-size="20" font-family="serif">
+          <text x="80" y="55">♪</text>
+          <text x="240" y="85">♫</text>
+          <text x="420" y="50">♩</text>
+          <text x="580" y="80">♬</text>
+          <text x="720" y="55">♪</text>
+          <text x="160" y="145">♫</text>
+          <text x="500" y="150">♩</text>
+        </g>
+        <!-- vertical accent lines -->
+        <g stroke="#a78bfa" stroke-width=".5" opacity=".12">
+          <line x1="200" y1="0" x2="200" y2="200"/>
+          <line x1="400" y1="0" x2="400" y2="200"/>
+          <line x1="600" y1="0" x2="600" y2="200"/>
+        </g>
+      </svg>
+      <div class="modal-hero-glow"></div>
+      <div class="modal-hero-content">
+        <div class="modal-project-type" style="--hero-accent:#a78bfa">Full-Stack Web · E-Commerce</div>
+        <div class="modal-hero-row">
+          <span class="modal-hero-icon">🎸</span>
+          <h2 class="modal-project-title">Maqam</h2>
+        </div>
+        <div class="modal-badges">
+          <span class="modal-badge badge-done">✓ Completed</span>
+          <span class="modal-badge badge-role">Solo Developer</span>
+          <span class="modal-badge badge-year">2025</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-body" style="--section-accent:#a78bfa">
+
+      <div class="modal-meta">
+        <div class="modal-meta-item"><span class="modal-meta-label">Type</span><span class="modal-meta-value">Web E-Commerce</span></div>
+        <div class="modal-meta-item"><span class="modal-meta-label">Platform</span><span class="modal-meta-value">Web (MVC)</span></div>
+        <div class="modal-meta-item"><span class="modal-meta-label">Status</span><span class="modal-meta-value meta-cyan">Completed</span></div>
+        <div class="modal-meta-item"><span class="modal-meta-label">Timeline</span><span class="modal-meta-value">2025</span></div>
+      </div>
+
+      <div>
+        <div class="modal-section-label">Overview</div>
+        <p class="modal-overview">
+          Maqam (مقام — the Arabic word for musical mode) is a <strong>full-stack e-commerce platform for musical instruments</strong>. Built on ASP.NET Core MVC with a SQL Server backend, it delivers a complete end-to-end shopping experience: from discovering instruments by category, to managing a cart, placing an order, and fulfilling it through an admin panel. The project covers the <strong>full MVC lifecycle</strong> with clean separation of concerns, EF Core data access, and ASP.NET Identity for authentication.
+        </p>
+      </div>
+
+      <div>
+        <div class="modal-section-label">Key Features</div>
+        <div class="modal-features-grid">
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🛒</span>
+            <div>
+              <div class="modal-feature-name">Shopping Cart</div>
+              <div class="modal-feature-desc">Real-time cart management — add, update quantities, and remove items with instant subtotal calculation</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🏷️</span>
+            <div>
+              <div class="modal-feature-name">Category Filtering</div>
+              <div class="modal-feature-desc">Browse the full instrument catalog or filter by type — guitars, keyboards, percussion, and more</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">👤</span>
+            <div>
+              <div class="modal-feature-name">User Authentication</div>
+              <div class="modal-feature-desc">ASP.NET Identity with registration, login, and persistent sessions for returning customers</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🔑</span>
+            <div>
+              <div class="modal-feature-name">Role-Based Access</div>
+              <div class="modal-feature-desc">Separate Admin and Customer roles — admins access the management dashboard, customers the storefront</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">📦</span>
+            <div>
+              <div class="modal-feature-name">Order Processing</div>
+              <div class="modal-feature-desc">Full order lifecycle from cart checkout to order confirmation and status tracking</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🔧</span>
+            <div>
+              <div class="modal-feature-name">Admin Dashboard</div>
+              <div class="modal-feature-desc">Manage products, categories, inventory, and orders from a dedicated admin interface</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-highlight" style="border-color:rgba(124,58,237,.2);background:linear-gradient(135deg,rgba(124,58,237,.05),rgba(167,139,250,.04))">
+        <div class="modal-highlight-title" style="color:#a78bfa">TECHNICAL HIGHLIGHTS</div>
+        <ul class="modal-highlight-list">
+          <li style="--accent:#a78bfa">MVC Pattern — Controllers, Views, and Models fully decoupled</li>
+          <li>EF Core with SQL Server and schema migrations for version-controlled data</li>
+          <li>ASP.NET Identity for secure, production-grade authentication and authorization</li>
+          <li>Repository pattern for clean data access abstraction across the application</li>
+          <li>Bootstrap-based responsive layout — works across desktop and mobile browsers</li>
+          <li>CRUD operations for products and categories with input validation</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="modal-section-label">Tech Stack</div>
+        <div class="modal-stack-wrap">
+          <span class="modal-stack-tag">ASP.NET Core MVC</span><span class="modal-stack-tag">C#</span>
+          <span class="modal-stack-tag">EF Core</span><span class="modal-stack-tag">SQL Server</span>
+          <span class="modal-stack-tag">ASP.NET Identity</span><span class="modal-stack-tag">Bootstrap</span>
+          <span class="modal-stack-tag">Razor Views</span><span class="modal-stack-tag">LINQ</span>
+          <span class="modal-stack-tag">Repository Pattern</span>
+        </div>
+      </div>
+
+      <div class="modal-links">
+        <a href="https://github.com/faresibrahim/maqam-ecommerce-website" target="_blank" class="btn btn-primary" style="background:#7c3aed;border-color:#7c3aed">View on GitHub ↗</a>
+        <a href="#contact" class="btn-ghost" onclick="closeModal('maqam')">✉ Ask Me About This</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- AMAN MODAL -->
+<div class="modal-overlay" id="modal-aman" onclick="handleOverlayClick(event,'aman')">
+  <div class="modal-panel" role="dialog" aria-label="Aman project details">
+    <button class="modal-close-btn" onclick="closeModal('aman')" aria-label="Close">×</button>
+
+    <div class="modal-hero hero-aman" style="--glow-color:rgba(244,63,94,.18);--hero-accent:#fb7185;--hero-glow:rgba(251,113,133,.55)">
+      <svg class="modal-hero-pattern" viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="gp3" cx="25%" cy="50%"><stop offset="0%" stop-color="#f43f5e" stop-opacity=".2"/><stop offset="100%" stop-color="#f43f5e" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="820" height="200" fill="url(#gp3)"/>
+        <!-- concentric circles -->
+        <g stroke="#fb7185" fill="none" opacity=".12">
+          <circle cx="160" cy="100" r="40" stroke-width="1"/>
+          <circle cx="160" cy="100" r="70" stroke-width=".8"/>
+          <circle cx="160" cy="100" r="105" stroke-width=".6"/>
+          <circle cx="160" cy="100" r="145" stroke-width=".4"/>
+        </g>
+        <!-- flowing wave at bottom -->
+        <g stroke="#fb7185" stroke-width=".7" fill="none" opacity=".18">
+          <path d="M300,40 Q400,10 500,40 Q600,70 700,40 Q770,20 820,40"/>
+          <path d="M300,70 Q400,40 500,70 Q600,100 700,70 Q770,50 820,70"/>
+          <path d="M300,130 Q400,100 500,130 Q600,160 700,130 Q770,110 820,130"/>
+          <path d="M300,160 Q400,130 500,160 Q600,190 700,160 Q770,140 820,160"/>
+        </g>
+        <!-- dots accent -->
+        <g fill="#fb7185" opacity=".25">
+          <circle cx="500" cy="40" r="2"/><circle cx="560" cy="65" r="1.5"/><circle cx="620" cy="40" r="2"/>
+          <circle cx="680" cy="55" r="1.5"/><circle cx="740" cy="35" r="2"/><circle cx="780" cy="60" r="1.5"/>
+          <circle cx="460" cy="130" r="1.5"/><circle cx="540" cy="155" r="2"/><circle cx="630" cy="130" r="1.5"/>
+        </g>
+      </svg>
+      <div class="modal-hero-glow"></div>
+      <div class="modal-hero-content">
+        <div class="modal-project-type" style="--hero-accent:#fb7185">UI/UX Design · Mobile Case Study</div>
+        <div class="modal-hero-row">
+          <span class="modal-hero-icon">🛡️</span>
+          <h2 class="modal-project-title">Aman — أمان</h2>
+        </div>
+        <div class="modal-badges">
+          <span class="modal-badge badge-done">✓ Completed</span>
+          <span class="modal-badge badge-design">Lead Designer</span>
+          <span class="modal-badge badge-year">2024</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-body" style="--section-accent:#fb7185">
+
+      <div class="modal-meta">
+        <div class="modal-meta-item"><span class="modal-meta-label">Type</span><span class="modal-meta-value">UI/UX Case Study</span></div>
+        <div class="modal-meta-item"><span class="modal-meta-label">Platform</span><span class="modal-meta-value">Mobile (iOS/Android)</span></div>
+        <div class="modal-meta-item"><span class="modal-meta-label">Status</span><span class="modal-meta-value meta-cyan">Completed</span></div>
+        <div class="modal-meta-item"><span class="modal-meta-label">Timeline</span><span class="modal-meta-value">2024</span></div>
+      </div>
+
+      <div>
+        <div class="modal-section-label">Overview</div>
+        <p class="modal-overview">
+          <strong>Aman (أمان — "Safety" in Arabic)</strong> is a thoughtfully designed mobile application for women who have experienced abuse, assault, or trauma. The design process was entirely <strong>research-driven</strong> — no screens were designed until user interviews were conducted, personas were built, and competitive products were analyzed. The result is a calm, safe, and empowering digital space where users can process their experiences, find community, and access professional support.
+        </p>
+      </div>
+
+      <div>
+        <div class="modal-section-label">Design Process</div>
+        <div class="modal-process-steps" style="--step-color:#fb7185;--step-bg:rgba(251,113,133,.1);--step-border:rgba(251,113,133,.25)">
+          <div class="modal-step">
+            <span class="modal-step-num">01</span>
+            <div>
+              <div class="modal-step-title">Research & Discovery</div>
+              <div class="modal-step-desc">User interviews with target demographic, desk research on trauma-informed design, surveys to validate assumptions</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <span class="modal-step-num">02</span>
+            <div>
+              <div class="modal-step-title">Personas & Empathy Maps</div>
+              <div class="modal-step-desc">3 detailed user personas capturing different user needs, emotional states, and usage contexts</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <span class="modal-step-num">03</span>
+            <div>
+              <div class="modal-step-title">Competitive Analysis</div>
+              <div class="modal-step-desc">Evaluated 5+ existing mental health apps — identified gaps in safety features, Arabic language support, and trauma-specific flows</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <span class="modal-step-num">04</span>
+            <div>
+              <div class="modal-step-title">Information Architecture</div>
+              <div class="modal-step-desc">Card sorting exercises to define navigation, user flows mapped for core journeys (journaling, booking, support circles)</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <span class="modal-step-num">05</span>
+            <div>
+              <div class="modal-step-title">Wireframes → High-Fidelity</div>
+              <div class="modal-step-desc">Low-fidelity sketches iterated to polished high-fidelity screens with a calming rose &amp; lavender visual language</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <span class="modal-step-num">06</span>
+            <div>
+              <div class="modal-step-title">Interactive Prototype</div>
+              <div class="modal-step-desc">Fully clickable Figma prototype covering all core user flows — shared on Behance as a complete case study</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-label">App Features</div>
+        <div class="modal-features-grid">
+          <div class="modal-feature">
+            <span class="modal-feature-icon">📔</span>
+            <div>
+              <div class="modal-feature-name">Private Journaling</div>
+              <div class="modal-feature-desc">Secure, encrypted mood-tracked journal entries — a space that belongs only to the user</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🫂</span>
+            <div>
+              <div class="modal-feature-name">Support Circles</div>
+              <div class="modal-feature-desc">Anonymous community groups organized by shared experience — peer connection without identity exposure</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">👩‍⚕️</span>
+            <div>
+              <div class="modal-feature-name">Expert Consultations</div>
+              <div class="modal-feature-desc">Book private sessions with licensed psychologists and trauma-specialized counselors</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🌅</span>
+            <div>
+              <div class="modal-feature-name">Daily Positive Notes</div>
+              <div class="modal-feature-desc">Affirmations and healing exercises delivered daily — building emotional resilience over time</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🆘</span>
+            <div>
+              <div class="modal-feature-name">Crisis Resources</div>
+              <div class="modal-feature-desc">One-tap access to emergency contacts, crisis hotlines, and safety planning tools</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🔐</span>
+            <div>
+              <div class="modal-feature-name">Privacy-First Design</div>
+              <div class="modal-feature-desc">Discreet app icon, quick-exit button, and biometric lock — safety at the OS level</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-label">Tools & Methods</div>
+        <div class="modal-stack-wrap">
+          <span class="modal-stack-tag">Figma</span><span class="modal-stack-tag">UI/UX Design</span>
+          <span class="modal-stack-tag">User Interviews</span><span class="modal-stack-tag">Personas</span>
+          <span class="modal-stack-tag">Empathy Maps</span><span class="modal-stack-tag">Competitive Analysis</span>
+          <span class="modal-stack-tag">Card Sorting</span><span class="modal-stack-tag">User Flows</span>
+          <span class="modal-stack-tag">Wireframing</span><span class="modal-stack-tag">Prototyping</span>
+          <span class="modal-stack-tag">Case Study</span>
+        </div>
+      </div>
+
+      <div class="modal-links">
+        <a href="https://www.behance.net/gallery/236078101/Aman-Mobile-App" target="_blank" class="btn btn-primary" style="background:#f43f5e;border-color:#f43f5e">View on Behance ↗</a>
+        <a href="#contact" class="btn-ghost" onclick="closeModal('aman')">✉ Ask Me About This</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- FINDER PAL MODAL -->
+<div class="modal-overlay" id="modal-finder" onclick="handleOverlayClick(event,'finder')">
+  <div class="modal-panel" role="dialog" aria-label="Finder Pal project details">
+    <button class="modal-close-btn" onclick="closeModal('finder')" aria-label="Close">×</button>
+
+    <div class="modal-hero hero-finder" style="--glow-color:rgba(16,185,129,.18);--hero-accent:#34d399;--hero-glow:rgba(52,211,153,.55)">
+      <svg class="modal-hero-pattern" viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="gp4" cx="70%" cy="50%"><stop offset="0%" stop-color="#10b981" stop-opacity=".2"/><stop offset="100%" stop-color="#10b981" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="820" height="200" fill="url(#gp4)"/>
+        <!-- warehouse grid -->
+        <g stroke="#34d399" stroke-width=".5" opacity=".15">
+          <line x1="0" y1="50" x2="820" y2="50"/><line x1="0" y1="100" x2="820" y2="100"/><line x1="0" y1="150" x2="820" y2="150"/>
+          <line x1="80" y1="0" x2="80" y2="200"/><line x1="160" y1="0" x2="160" y2="200"/>
+          <line x1="240" y1="0" x2="240" y2="200"/><line x1="320" y1="0" x2="320" y2="200"/>
+          <line x1="400" y1="0" x2="400" y2="200"/><line x1="480" y1="0" x2="480" y2="200"/>
+          <line x1="560" y1="0" x2="560" y2="200"/><line x1="640" y1="0" x2="640" y2="200"/>
+          <line x1="720" y1="0" x2="720" y2="200"/><line x1="800" y1="0" x2="800" y2="200"/>
+        </g>
+        <!-- shelf/rack indicators -->
+        <g fill="#34d399" opacity=".2">
+          <rect x="90" y="55" width="60" height="35" rx="2"/>
+          <rect x="170" y="55" width="60" height="35" rx="2"/>
+          <rect x="90" y="105" width="60" height="35" rx="2"/>
+          <rect x="330" y="55" width="60" height="35" rx="2"/>
+          <rect x="410" y="105" width="60" height="35" rx="2"/>
+        </g>
+        <!-- robot path indicator -->
+        <g stroke="#34d399" stroke-width="1.5" fill="none" stroke-dasharray="6,4" opacity=".3">
+          <path d="M600,180 L600,100 L520,100 L520,60 L650,60 L650,130 L740,130"/>
+        </g>
+        <!-- robot icon -->
+        <g transform="translate(725,100)" opacity=".45">
+          <rect x="-12" y="-14" width="24" height="22" rx="3" fill="none" stroke="#34d399" stroke-width="1.5"/>
+          <circle cx="-5" cy="-6" r="3" fill="#34d399"/>
+          <circle cx="5" cy="-6" r="3" fill="#34d399"/>
+          <line x1="-12" y1="4" x2="-16" y2="4" stroke="#34d399" stroke-width="1.5"/>
+          <line x1="12" y1="4" x2="16" y2="4" stroke="#34d399" stroke-width="1.5"/>
+        </g>
+      </svg>
+      <div class="modal-hero-glow"></div>
+      <div class="modal-hero-content">
+        <div class="modal-project-type" style="--hero-accent:#34d399">Robotics · Computer Vision · Capstone</div>
+        <div class="modal-hero-row">
+          <span class="modal-hero-icon">🤖</span>
+          <h2 class="modal-project-title">Finder Pal</h2>
+        </div>
+        <div class="modal-badges">
+          <span class="modal-badge badge-done">✓ Completed</span>
+          <span class="modal-badge badge-role">Team Member & Web Designer</span>
+          <span class="modal-badge badge-year">2024</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-body" style="--section-accent:#34d399">
+
+      <div class="modal-meta">
+        <div class="modal-meta-item"><span class="modal-meta-label">Type</span><span class="modal-meta-value">Robotics Capstone</span></div>
+        <div class="modal-meta-item"><span class="modal-meta-label">Institution</span><span class="modal-meta-value">Univ. of Mich.-Flint</span></div>
+        <div class="modal-meta-item"><span class="modal-meta-label">Status</span><span class="modal-meta-value meta-cyan">Completed</span></div>
+        <div class="modal-meta-item"><span class="modal-meta-label">Timeline</span><span class="modal-meta-value">2024</span></div>
+      </div>
+
+      <div>
+        <div class="modal-section-label">Overview</div>
+        <p class="modal-overview">
+          Finder Pal is an <strong>intelligent warehouse robot</strong> developed as the capstone project at the University of Michigan-Flint. The robot autonomously navigates warehouse aisles, identifies target items via an onboard camera using computer vision, and places them with precision at designated drop points. I <strong>contributed to robot development</strong>, facilitated <strong>weekly team standups</strong>, and designed the <strong>team's project website</strong> from scratch.
+        </p>
+      </div>
+
+      <div>
+        <div class="modal-section-label">Robot Capabilities</div>
+        <div class="modal-features-grid">
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🧭</span>
+            <div>
+              <div class="modal-feature-name">Autonomous Navigation</div>
+              <div class="modal-feature-desc">Real-time path planning with obstacle detection and avoidance in dynamic warehouse environments</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">👁️</span>
+            <div>
+              <div class="modal-feature-name">Computer Vision</div>
+              <div class="modal-feature-desc">Onboard camera with image recognition to identify, locate, and classify target items on shelves</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🎯</span>
+            <div>
+              <div class="modal-feature-name">Precise Placement</div>
+              <div class="modal-feature-desc">Accurate item retrieval and deposit — the robot confirms placement before marking a task complete</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">⚡</span>
+            <div>
+              <div class="modal-feature-name">Real-Time Processing</div>
+              <div class="modal-feature-desc">On-device computation for navigation and vision tasks — no cloud dependency for core operations</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-label">My Contributions</div>
+        <div class="modal-features-grid">
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🤖</span>
+            <div>
+              <div class="modal-feature-name">Robot Development</div>
+              <div class="modal-feature-desc">Contributed to hardware integration and software implementation for navigation and vision subsystems</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🗣️</span>
+            <div>
+              <div class="modal-feature-name">Team Leadership</div>
+              <div class="modal-feature-desc">Led weekly standups, tracked milestones, and ensured alignment across team members throughout the semester</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">🌐</span>
+            <div>
+              <div class="modal-feature-name">Website Design</div>
+              <div class="modal-feature-desc">Designed and built the team's project website — HTML, CSS, and JavaScript from scratch</div>
+            </div>
+          </div>
+          <div class="modal-feature">
+            <span class="modal-feature-icon">📄</span>
+            <div>
+              <div class="modal-feature-name">Documentation</div>
+              <div class="modal-feature-desc">Maintained technical documentation, progress reports, and milestone deliverables for the capstone</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-highlight" style="border-color:rgba(52,211,153,.18);background:linear-gradient(135deg,rgba(16,185,129,.05),rgba(52,211,153,.04))">
+        <div class="modal-highlight-title" style="color:#34d399">PROJECT CONTEXT</div>
+        <ul class="modal-highlight-list">
+          <li style="--accent:#34d399">Developed as the senior capstone project at University of Michigan-Flint</li>
+          <li>Cross-disciplinary team combining robotics, computer science, and engineering</li>
+          <li>Demonstrated live in a simulated warehouse environment at project showcase</li>
+          <li>Project repository maintained on GitHub under the team organization</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="modal-section-label">Technologies</div>
+        <div class="modal-stack-wrap">
+          <span class="modal-stack-tag">Robotics</span><span class="modal-stack-tag">Computer Vision</span>
+          <span class="modal-stack-tag">Autonomous Navigation</span><span class="modal-stack-tag">Image Recognition</span>
+          <span class="modal-stack-tag">HTML</span><span class="modal-stack-tag">CSS</span>
+          <span class="modal-stack-tag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="modal-links">
+        <a href="https://github.com/eritsen/FinderPal" target="_blank" class="btn btn-primary" style="background:#059669;border-color:#059669">View on GitHub ↗</a>
+        <a href="#contact" class="btn-ghost" onclick="closeModal('finder')">✉ Ask Me About This</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 <script>
+  /* ---- Profile Image ---- */
   (function(){
     const img = document.getElementById('profileImg');
     img.onerror = function() {
@@ -436,6 +1262,7 @@
     img.src = 'https://i.ibb.co/9mbmQQVk/IMG-1268.jpg';
   })();
 
+  /* ---- Particles ---- */
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
   let W, H, particles = [];
@@ -456,6 +1283,7 @@
   resize();initParticles();drawParticles();
   window.addEventListener('resize',()=>{resize();initParticles();});
 
+  /* ---- Typewriter ---- */
   const phrases=['Junior Full-Stack Developer','Flutter + ASP.NET Core','Building PhysioLink 🦴','Freelance-Ready in 2026'];
   let pi=0,ci=0,deleting=false;
   const el=document.getElementById('typed');
@@ -467,8 +1295,40 @@
   }
   type();
 
+  /* ---- Fade-in Observer ---- */
   const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.12});
   document.querySelectorAll('.fade-in').forEach(e=>obs.observe(e));
+
+  /* ---- Modal System ---- */
+  function openModal(id) {
+    const overlay = document.getElementById('modal-' + id);
+    if (!overlay) return;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    /* reset scroll inside panel */
+    const panel = overlay.querySelector('.modal-panel');
+    if (panel) panel.scrollTop = 0;
+  }
+
+  function closeModal(id) {
+    const overlay = document.getElementById('modal-' + id);
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e, id) {
+    if (e.target === e.currentTarget) closeModal(id);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(function(m) {
+        m.classList.remove('open');
+      });
+      document.body.style.overflow = '';
+    }
+  });
 </script>
 </body>
 </html>
