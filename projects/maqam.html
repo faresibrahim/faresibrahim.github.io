@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Maqam — Fares Ibrahim</title>
+<link rel="stylesheet" href="project.css"/>
+<style>
+  body { --section-accent:#a78bfa; }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<nav>
+  <a href="../index.html" class="logo">&lt;FARES /&gt;</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#about">About</a></li>
+    <li><a href="../index.html#projects">Projects</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+    <li><a href="../index.html#projects" class="nav-back">← All Projects</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="breadcrumb fade-in">
+    <a href="../index.html">~</a>
+    <span class="sep">/</span>
+    <a href="../index.html#projects">projects</a>
+    <span class="sep">/</span>
+    <span class="current">maqam</span>
+  </div>
+
+  <section class="project-hero hero-maqam fade-in" style="--glow-color:rgba(124,58,237,.25);--hero-accent:#a78bfa;--hero-glow:rgba(167,139,250,.6)">
+    <svg class="hero-pattern" viewBox="0 0 1100 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="gp2" cx="70%" cy="50%"><stop offset="0%" stop-color="#7c3aed" stop-opacity=".22"/><stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect width="1100" height="280" fill="url(#gp2)"/>
+      <g stroke="#a78bfa" stroke-width=".9" fill="none" opacity=".22">
+        <path d="M0,80 Q140,30 280,80 Q420,130 560,80 Q700,30 840,80 Q980,130 1100,80"/>
+        <path d="M0,130 Q140,80 280,130 Q420,180 560,130 Q700,80 840,130 Q980,180 1100,130"/>
+        <path d="M0,180 Q140,130 280,180 Q420,230 560,180 Q700,130 840,180 Q980,230 1100,180"/>
+      </g>
+      <g fill="#a78bfa" opacity=".32" font-size="26" font-family="serif">
+        <text x="100" y="70">♪</text><text x="320" y="110">♫</text><text x="580" y="65">♩</text>
+        <text x="800" y="100">♬</text><text x="980" y="70">♪</text><text x="220" y="200">♫</text>
+        <text x="700" y="220">♩</text><text x="450" y="240">♬</text>
+      </g>
+      <g stroke="#a78bfa" stroke-width=".5" opacity=".12">
+        <line x1="280" y1="0" x2="280" y2="280"/>
+        <line x1="560" y1="0" x2="560" y2="280"/>
+        <line x1="840" y1="0" x2="840" y2="280"/>
+      </g>
+    </svg>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="project-type" style="--hero-accent:#a78bfa">Full-Stack Web · E-Commerce</div>
+      <div class="hero-row">
+        <span class="hero-icon">🎸</span>
+        <h1 class="project-title">Maqam — مقام</h1>
+      </div>
+      <p class="tagline">A full-stack e-commerce platform for musical instruments, with full ASP.NET MVC architecture, role-based identity, and complete order lifecycle.</p>
+      <div class="badges">
+        <span class="badge badge-done">✓ Completed</span>
+        <span class="badge badge-role">Solo Developer</span>
+        <span class="badge badge-year">2025</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="meta-strip fade-in">
+    <div class="meta-item"><span class="meta-label">Type</span><span class="meta-value">Web E-Commerce</span></div>
+    <div class="meta-item"><span class="meta-label">Platform</span><span class="meta-value">Web (MVC)</span></div>
+    <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value meta-violet">Completed</span></div>
+    <div class="meta-item"><span class="meta-label">Timeline</span><span class="meta-value">2025</span></div>
+    <div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">Solo Developer</span></div>
+  </div>
+
+  <section class="section fade-in">
+    <div class="section-label">// Overview</div>
+    <h2 class="section-heading">A store for the strings, keys, and skins.</h2>
+    <div class="section-text">
+      <p>Maqam (مقام — the Arabic word for musical mode) is a <strong>full-stack e-commerce platform for musical instruments</strong>. Built on ASP.NET Core MVC with a SQL Server backend, it delivers a complete end-to-end shopping experience: from discovering instruments by category, to managing a cart, placing an order, and fulfilling it through an admin panel.</p>
+      <p>The project covers the <strong>full MVC lifecycle</strong> with clean separation of concerns, EF Core data access, and ASP.NET Identity for authentication.</p>
+    </div>
+  </section>
+
+  <section class="section fade-in">
+    <div class="section-label">// Key Features</div>
+    <div class="features-grid">
+      <div class="feature"><span class="feature-icon">🛒</span><div><div class="feature-name">Shopping Cart</div><div class="feature-desc">Real-time cart management — add, update, and remove items with instant subtotal updates</div></div></div>
+      <div class="feature"><span class="feature-icon">🏷️</span><div><div class="feature-name">Category Filtering</div><div class="feature-desc">Browse the full catalog or filter by guitars, keyboards, percussion, and more</div></div></div>
+      <div class="feature"><span class="feature-icon">👤</span><div><div class="feature-name">User Authentication</div><div class="feature-desc">ASP.NET Identity with registration, login, and persistent sessions</div></div></div>
+      <div class="feature"><span class="feature-icon">🔑</span><div><div class="feature-name">Role-Based Access</div><div class="feature-desc">Separate Admin and Customer roles for storefront vs. management dashboard</div></div></div>
+      <div class="feature"><span class="feature-icon">📦</span><div><div class="feature-name">Order Processing</div><div class="feature-desc">Full order lifecycle from cart checkout to confirmation and status tracking</div></div></div>
+      <div class="feature"><span class="feature-icon">🔧</span><div><div class="feature-name">Admin Dashboard</div><div class="feature-desc">Manage products, categories, inventory, and orders from a dedicated interface</div></div></div>
+    </div>
+  </section>
+
+  <section class="section fade-in">
+    <div class="section-label">// Technical Highlights</div>
+    <div class="highlight" style="border-color:rgba(124,58,237,.2);background:linear-gradient(135deg,rgba(124,58,237,.05),rgba(167,139,250,.04))">
+      <div class="highlight-title" style="color:#a78bfa">ENGINEERING DECISIONS</div>
+      <ul class="highlight-list">
+        <li style="--accent:#a78bfa">MVC Pattern — Controllers, Views, and Models fully decoupled</li>
+        <li>EF Core with SQL Server and schema migrations for version-controlled data</li>
+        <li>ASP.NET Identity for secure, production-grade authentication and authorization</li>
+        <li>Repository pattern for clean data access abstraction across the application</li>
+        <li>Bootstrap-based responsive layout — works across desktop and mobile browsers</li>
+        <li>CRUD operations for products and categories with input validation</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section fade-in">
+    <div class="section-label">// Tech Stack</div>
+    <div class="stack-wrap">
+      <span class="stack-tag">ASP.NET Core MVC</span><span class="stack-tag">C#</span>
+      <span class="stack-tag">EF Core</span><span class="stack-tag">SQL Server</span>
+      <span class="stack-tag">ASP.NET Identity</span><span class="stack-tag">Bootstrap</span>
+      <span class="stack-tag">Razor Views</span><span class="stack-tag">LINQ</span>
+      <span class="stack-tag">Repository Pattern</span>
+    </div>
+  </section>
+
+  <div class="cta-row fade-in">
+    <a href="https://github.com/faresibrahim/maqam-ecommerce-website" target="_blank" class="btn btn-primary" style="--cta-bg:#7c3aed;--cta-glow:rgba(124,58,237,.5);color:#fff">View on GitHub ↗</a>
+    <a href="../index.html#contact" class="btn btn-ghost">✉ Ask Me About This</a>
+    <a href="../index.html#projects" class="btn btn-ghost">← Back to Projects</a>
+  </div>
+
+  <section class="other-projects fade-in">
+    <div class="other-label">// Explore Other Projects</div>
+    <div class="other-grid">
+      <a href="physiolink.html" class="other-card"><span class="other-icon">🦴</span><div><div class="other-name">PhysioLink</div><div class="other-type">Full-Stack · Mobile + API</div></div></a>
+      <a href="manoly.html" class="other-card"><span class="other-icon">📦</span><div><div class="other-name">Manoly Warehouse</div><div class="other-type">Inventory · ASP.NET</div></div></a>
+      <a href="aman.html" class="other-card"><span class="other-icon">🛡️</span><div><div class="other-name">Aman</div><div class="other-type">UI/UX · Case Study</div></div></a>
+      <a href="finder.html" class="other-card"><span class="other-icon">🤖</span><div><div class="other-name">Finder Pal</div><div class="other-type">Robotics · Capstone</div></div></a>
+    </div>
+  </section>
+
+</main>
+
+<footer><span>// Built with passion &amp; too much coffee — Fares Ibrahim © 2026</span></footer>
+
+<script>window.PARTICLE_COLOR='167,139,250';</script>
+<script src="project.js"></script>
+</body>
+</html>

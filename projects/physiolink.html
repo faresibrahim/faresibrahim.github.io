@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PhysioLink — Fares Ibrahim</title>
+<link rel="stylesheet" href="project.css"/>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<nav>
+  <a href="../index.html" class="logo">&lt;FARES /&gt;</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#about">About</a></li>
+    <li><a href="../index.html#projects">Projects</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+    <li><a href="../index.html#projects" class="nav-back">← All Projects</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="breadcrumb fade-in">
+    <a href="../index.html">~</a>
+    <span class="sep">/</span>
+    <a href="../index.html#projects">projects</a>
+    <span class="sep">/</span>
+    <span class="current">physiolink</span>
+  </div>
+
+  <!-- HERO -->
+  <section class="project-hero hero-physio fade-in" style="--glow-color:rgba(0,212,255,.22);--hero-accent:#00d4ff;--hero-glow:rgba(0,212,255,.7)">
+    <svg class="hero-pattern" viewBox="0 0 1100 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="gp1" cx="30%" cy="50%"><stop offset="0%" stop-color="#00d4ff" stop-opacity=".18"/><stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect width="1100" height="280" fill="url(#gp1)"/>
+      <g fill="#00d4ff" opacity=".22">
+        <circle cx="60" cy="40" r="1.5"/><circle cx="160" cy="40" r="1.5"/><circle cx="260" cy="40" r="1.5"/><circle cx="360" cy="40" r="1.5"/><circle cx="460" cy="40" r="1.5"/><circle cx="560" cy="40" r="1.5"/><circle cx="660" cy="40" r="1.5"/><circle cx="760" cy="40" r="1.5"/><circle cx="860" cy="40" r="1.5"/><circle cx="960" cy="40" r="1.5"/><circle cx="1060" cy="40" r="1.5"/>
+        <circle cx="60" cy="120" r="1.5"/><circle cx="160" cy="120" r="1.5"/><circle cx="260" cy="120" r="1.5"/><circle cx="360" cy="120" r="1.5"/><circle cx="460" cy="120" r="1.5"/><circle cx="560" cy="120" r="1.5"/><circle cx="660" cy="120" r="1.5"/><circle cx="760" cy="120" r="1.5"/><circle cx="860" cy="120" r="1.5"/><circle cx="960" cy="120" r="1.5"/><circle cx="1060" cy="120" r="1.5"/>
+        <circle cx="60" cy="200" r="1.5"/><circle cx="160" cy="200" r="1.5"/><circle cx="260" cy="200" r="1.5"/><circle cx="360" cy="200" r="1.5"/><circle cx="460" cy="200" r="1.5"/><circle cx="560" cy="200" r="1.5"/><circle cx="660" cy="200" r="1.5"/><circle cx="760" cy="200" r="1.5"/><circle cx="860" cy="200" r="1.5"/><circle cx="960" cy="200" r="1.5"/><circle cx="1060" cy="200" r="1.5"/>
+      </g>
+      <g stroke="#00d4ff" stroke-width=".6" opacity=".2">
+        <line x1="60" y1="40" x2="260" y2="120"/><line x1="260" y1="120" x2="460" y2="40"/><line x1="460" y1="40" x2="660" y2="120"/>
+        <line x1="660" y1="120" x2="860" y2="40"/><line x1="160" y1="40" x2="360" y2="120"/><line x1="360" y1="120" x2="560" y2="200"/>
+        <line x1="560" y1="200" x2="760" y2="120"/><line x1="760" y1="120" x2="960" y2="200"/>
+      </g>
+      <circle cx="260" cy="120" r="5" fill="none" stroke="#00d4ff" stroke-width="1" opacity=".5"/>
+      <circle cx="660" cy="120" r="5" fill="none" stroke="#00d4ff" stroke-width="1" opacity=".5"/>
+      <circle cx="460" cy="40" r="5" fill="none" stroke="#00d4ff" stroke-width="1" opacity=".5"/>
+    </svg>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="project-type">Full-Stack Development · Mobile + Web API</div>
+      <div class="hero-row">
+        <span class="hero-icon">🦴</span>
+        <h1 class="project-title">PhysioLink</h1>
+      </div>
+      <p class="tagline">A full-stack physiotherapy clinic management platform pairing a Flutter patient app with an ASP.NET Core multi-tenant REST API.</p>
+      <div class="badges">
+        <span class="badge badge-active">● In Development</span>
+        <span class="badge badge-role">Solo Developer</span>
+        <span class="badge badge-year">2025 – 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- META STRIP -->
+  <div class="meta-strip fade-in">
+    <div class="meta-item"><span class="meta-label">Type</span><span class="meta-value">Full-Stack App</span></div>
+    <div class="meta-item"><span class="meta-label">Platform</span><span class="meta-value">Mobile + API</span></div>
+    <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value meta-green">In Development</span></div>
+    <div class="meta-item"><span class="meta-label">Timeline</span><span class="meta-value">2025 – 2026</span></div>
+    <div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">Solo Developer</span></div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section class="section fade-in">
+    <div class="section-label">// Overview</div>
+    <h2 class="section-heading">Patient mobility, clinic clarity.</h2>
+    <div class="section-text">
+      <p>PhysioLink is a <strong>full-stack physiotherapy clinic management platform</strong> built around two core products: a <strong>Flutter patient mobile app</strong> and an <strong>ASP.NET Core REST API</strong> backend. The system is architected for multi-tenancy, allowing multiple independent clinics to operate on a single deployment with complete data isolation between tenants.</p>
+      <p>From appointment booking to exercise program delivery, every touchpoint is designed with the patient experience in mind. The Phase 2 admin panel will extend the same architecture into a full clinic management dashboard.</p>
+    </div>
+  </section>
+
+  <!-- KEY FEATURES -->
+  <section class="section fade-in">
+    <div class="section-label">// Key Features</div>
+    <div class="features-grid">
+      <div class="feature"><span class="feature-icon">📅</span><div><div class="feature-name">Appointment Management</div><div class="feature-desc">Patients book, reschedule, and view upcoming sessions directly from the mobile app</div></div></div>
+      <div class="feature"><span class="feature-icon">💪</span><div><div class="feature-name">Exercise Assignment</div><div class="feature-desc">Therapists build and assign custom exercise programs with instructions and repetition tracking</div></div></div>
+      <div class="feature"><span class="feature-icon">🏗️</span><div><div class="feature-name">Multi-Tenant Architecture</div><div class="feature-desc">Clinic-level data isolation — each organization operates in a fully scoped environment</div></div></div>
+      <div class="feature"><span class="feature-icon">🔒</span><div><div class="feature-name">JWT Authentication</div><div class="feature-desc">Secure token-based auth with role separation between patients, therapists, and admins</div></div></div>
+      <div class="feature"><span class="feature-icon">📱</span><div><div class="feature-name">Flutter Mobile App</div><div class="feature-desc">Cross-platform patient app built with Riverpod state management and go_router navigation</div></div></div>
+      <div class="feature"><span class="feature-icon">🖥️</span><div><div class="feature-name">Admin Panel — Phase 2</div><div class="feature-desc">Full clinic management dashboard covering staff, schedules, and patient records</div></div></div>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section class="section fade-in">
+    <div class="section-label">// Architecture Highlights</div>
+    <div class="highlight">
+      <div class="highlight-title">ENGINEERING DECISIONS</div>
+      <ul class="highlight-list">
+        <li>Clean Architecture — Domain, Application, Infrastructure, and API layers fully separated</li>
+        <li>Repository Pattern with EF Core for abstracted, testable data access</li>
+        <li>Global Query Filters on tenant ID for seamless multi-tenant data scoping</li>
+        <li>Dependency Injection throughout — every service is composable and replaceable</li>
+        <li>LINQ-powered queries with proper pagination and filtering support</li>
+        <li>EF Core Migrations for versioned, reproducible schema management</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="section fade-in">
+    <div class="section-label">// Tech Stack</div>
+    <div class="stack-wrap">
+      <span class="stack-tag">Flutter</span><span class="stack-tag">Dart</span>
+      <span class="stack-tag">Riverpod</span><span class="stack-tag">go_router</span>
+      <span class="stack-tag">Freezed</span><span class="stack-tag">ASP.NET Core</span>
+      <span class="stack-tag">C#</span><span class="stack-tag">EF Core</span>
+      <span class="stack-tag">SQL Server</span><span class="stack-tag">JWT Auth</span>
+      <span class="stack-tag">REST API</span><span class="stack-tag">Clean Architecture</span>
+    </div>
+  </section>
+
+  <div class="cta-row fade-in">
+    <a href="https://github.com/faresibrahim" target="_blank" class="btn btn-primary">View on GitHub ↗</a>
+    <a href="../index.html#contact" class="btn btn-ghost">✉ Ask Me About This</a>
+    <a href="../index.html#projects" class="btn btn-ghost">← Back to Projects</a>
+  </div>
+
+  <!-- OTHER PROJECTS -->
+  <section class="other-projects fade-in">
+    <div class="other-label">// Explore Other Projects</div>
+    <div class="other-grid">
+      <a href="manoly.html" class="other-card"><span class="other-icon">📦</span><div><div class="other-name">Manoly Warehouse</div><div class="other-type">Inventory · ASP.NET</div></div></a>
+      <a href="maqam.html" class="other-card"><span class="other-icon">🎸</span><div><div class="other-name">Maqam</div><div class="other-type">E-Commerce · MVC</div></div></a>
+      <a href="aman.html" class="other-card"><span class="other-icon">🛡️</span><div><div class="other-name">Aman</div><div class="other-type">UI/UX · Case Study</div></div></a>
+      <a href="finder.html" class="other-card"><span class="other-icon">🤖</span><div><div class="other-name">Finder Pal</div><div class="other-type">Robotics · Capstone</div></div></a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>// Built with passion &amp; too much coffee — Fares Ibrahim © 2026</span>
+</footer>
+
+<script>window.PARTICLE_COLOR='0,212,255';</script>
+<script src="project.js"></script>
+</body>
+</html>

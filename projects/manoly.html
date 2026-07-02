@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Manoly Warehouse — Fares Ibrahim</title>
+<link rel="stylesheet" href="project.css"/>
+<style>body { --section-accent:#fbbf24; }</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<nav>
+  <a href="../index.html" class="logo">&lt;FARES /&gt;</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#about">About</a></li>
+    <li><a href="../index.html#projects">Projects</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+    <li><a href="../index.html#projects" class="nav-back">← All Projects</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="breadcrumb fade-in">
+    <a href="../index.html">~</a>
+    <span class="sep">/</span>
+    <a href="../index.html#projects">projects</a>
+    <span class="sep">/</span>
+    <span class="current">manoly-warehouse</span>
+  </div>
+
+  <!-- HERO -->
+  <section class="project-hero hero-manoly fade-in" style="--glow-color:rgba(251,191,36,.2);--hero-accent:#fbbf24;--hero-glow:rgba(251,191,36,.55)">
+    <svg class="hero-pattern" viewBox="0 0 1100 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="gp5" cx="30%" cy="50%"><stop offset="0%" stop-color="#fbbf24" stop-opacity=".2"/><stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/></radialGradient>
+        <pattern id="grain" width="3" height="3" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r=".4" fill="#fbbf24" opacity=".5"/></pattern>
+      </defs>
+      <rect width="1100" height="280" fill="url(#gp5)"/>
+      <!-- warehouse rack grid -->
+      <g stroke="#fbbf24" stroke-width=".6" opacity=".22">
+        <rect x="450" y="40" width="600" height="55" fill="none"/>
+        <rect x="450" y="105" width="600" height="55" fill="none"/>
+        <rect x="450" y="170" width="600" height="55" fill="none"/>
+        <line x1="525" y1="40" x2="525" y2="225"/>
+        <line x1="600" y1="40" x2="600" y2="225"/>
+        <line x1="675" y1="40" x2="675" y2="225"/>
+        <line x1="750" y1="40" x2="750" y2="225"/>
+        <line x1="825" y1="40" x2="825" y2="225"/>
+        <line x1="900" y1="40" x2="900" y2="225"/>
+        <line x1="975" y1="40" x2="975" y2="225"/>
+      </g>
+      <!-- shelf labels -->
+      <g fill="#fbbf24" font-family="Courier New, monospace" font-size="12" opacity=".55">
+        <text x="425" y="73">A</text>
+        <text x="425" y="138">B</text>
+        <text x="425" y="203">C</text>
+      </g>
+      <!-- product boxes -->
+      <g fill="#fbbf24" opacity=".25">
+        <rect x="455" y="48" width="65" height="40" rx="2"/>
+        <rect x="530" y="48" width="65" height="40" rx="2"/>
+        <rect x="680" y="48" width="65" height="40" rx="2"/>
+        <rect x="755" y="48" width="65" height="40" rx="2"/>
+        <rect x="905" y="48" width="65" height="40" rx="2"/>
+        <rect x="455" y="113" width="65" height="40" rx="2"/>
+        <rect x="605" y="113" width="65" height="40" rx="2"/>
+        <rect x="755" y="113" width="65" height="40" rx="2"/>
+        <rect x="830" y="113" width="65" height="40" rx="2"/>
+        <rect x="980" y="113" width="65" height="40" rx="2"/>
+        <rect x="530" y="178" width="65" height="40" rx="2"/>
+        <rect x="605" y="178" width="65" height="40" rx="2"/>
+        <rect x="755" y="178" width="65" height="40" rx="2"/>
+        <rect x="905" y="178" width="65" height="40" rx="2"/>
+        <rect x="980" y="178" width="65" height="40" rx="2"/>
+      </g>
+      <!-- empty slot accents -->
+      <g stroke="#fbbf24" stroke-width="1" stroke-dasharray="3,3" fill="none" opacity=".35">
+        <rect x="605" y="48" width="65" height="40" rx="2"/>
+        <rect x="830" y="48" width="65" height="40" rx="2"/>
+        <rect x="455" y="178" width="65" height="40" rx="2"/>
+      </g>
+      <!-- arabic-style flourish dots on left -->
+      <g fill="#fbbf24" opacity=".3">
+        <circle cx="80" cy="60" r="3"/>
+        <circle cx="140" cy="100" r="2"/>
+        <circle cx="200" cy="60" r="2.5"/>
+        <circle cx="80" cy="140" r="2"/>
+        <circle cx="160" cy="180" r="3"/>
+        <circle cx="240" cy="140" r="2"/>
+        <circle cx="120" cy="220" r="2.5"/>
+        <circle cx="220" cy="220" r="2"/>
+      </g>
+      <g stroke="#fbbf24" stroke-width=".5" opacity=".2" fill="none">
+        <path d="M60,90 Q150,40 240,90"/>
+        <path d="M60,190 Q150,240 240,190"/>
+      </g>
+    </svg>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="project-type" style="--hero-accent:#fbbf24">Inventory Management · Bilingual · Production</div>
+      <div class="hero-row">
+        <span class="hero-icon">📦</span>
+        <h1 class="project-title">Manoly Warehouse — مخزن منولي</h1>
+      </div>
+      <p class="tagline">A custom inventory management system replacing AppSheet for an Arabic-speaking wood trading company.</p>
+      <div class="badges">
+        <span class="badge badge-done">✓ In Production</span>
+        <span class="badge badge-role">Solo Developer</span>
+        <span class="badge badge-warm">Arabic-First · RTL</span>
+        <span class="badge badge-year">2025 – 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- META STRIP -->
+  <div class="meta-strip fade-in">
+    <div class="meta-item"><span class="meta-label">Client</span><span class="meta-value">Manoly Int'l Wood</span></div>
+    <div class="meta-item"><span class="meta-label">Type</span><span class="meta-value">Inventory System</span></div>
+    <div class="meta-item"><span class="meta-label">Language</span><span class="meta-value meta-amber">Arabic (RTL)</span></div>
+    <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value meta-green">In Production</span></div>
+    <div class="meta-item"><span class="meta-label">Team Size</span><span class="meta-value">5 – 10 users</span></div>
+    <div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">Solo Developer</span></div>
+  </div>
+
+  <!-- STATS ROW -->
+  <section class="section fade-in">
+    <div class="section-label">// By the Numbers</div>
+    <div class="stats-row">
+      <div class="stat-block" style="--stat-color:#fbbf24;--stat-glow:rgba(251,191,36,.14)">
+        <div class="stat-big">432</div>
+        <div class="stat-label">SHELF &amp; RACK LOCATIONS</div>
+      </div>
+      <div class="stat-block" style="--stat-color:#fbbf24;--stat-glow:rgba(251,191,36,.14)">
+        <div class="stat-big">~421</div>
+        <div class="stat-label">UNIQUE PRODUCTS</div>
+      </div>
+      <div class="stat-block" style="--stat-color:#fbbf24;--stat-glow:rgba(251,191,36,.14)">
+        <div class="stat-big">~30</div>
+        <div class="stat-label">PRODUCT CATEGORIES</div>
+      </div>
+      <div class="stat-block" style="--stat-color:#fbbf24;--stat-glow:rgba(251,191,36,.14)">
+        <div class="stat-big">983</div>
+        <div class="stat-label">ACTIVE PLACEMENTS</div>
+      </div>
+      <div class="stat-block" style="--stat-color:#fbbf24;--stat-glow:rgba(251,191,36,.14)">
+        <div class="stat-big">A–F</div>
+        <div class="stat-label">WAREHOUSE ROWS</div>
+      </div>
+      <div class="stat-block" style="--stat-color:#fbbf24;--stat-glow:rgba(251,191,36,.14)">
+        <div class="stat-big">100%</div>
+        <div class="stat-label">DATA OWNERSHIP</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="section fade-in">
+    <div class="section-label">// Overview</div>
+    <h2 class="section-heading">Owning the warehouse, not renting it.</h2>
+    <div class="section-text">
+      <p>Manoly Warehouse (مخزن منولي) is a production inventory system I built from scratch for <strong>Manoly International Wood</strong> to replace their AppSheet setup. The driver was real: per-user licensing was getting expensive, the UI couldn't represent the warehouse the way the team actually thought about it, and <strong>data ownership</strong> was becoming a concern at their data scale.</p>
+      <p>The warehouse is physically organized into <strong>~432 shelf and rack locations across rows A–F</strong>, holding roughly <strong>421 products</strong> with shelf-level capacity rules that differ between traditional shelves (A/B/C, capped at 6 positions) and racks (D/E/F, up to 12). Every screen is <strong>Arabic-first with right-to-left layout</strong>.</p>
+      <p>A core part of the project is the <strong>Excel sync workflow</strong>: the client's warehouse state evolves through spreadsheets, so I built a Python + openpyxl pipeline that parses the layout, runs a three-strategy product matcher, and emits idempotent SQL with full audit tagging. The application runs on a clean domain model with rich entities, EF Core Fluent API mappings, and a custom <em>"Warm Editorial"</em> design system inspired by the company's logo.</p>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section class="section fade-in">
+    <div class="section-label">// The Problem</div>
+    <h2 class="section-heading">Why replace AppSheet?</h2>
+    <div class="features-grid">
+      <div class="feature"><span class="feature-icon">💸</span><div><div class="feature-name">Per-User Licensing</div><div class="feature-desc">Costs scaled linearly with the team — every new warehouse worker meant another seat fee</div></div></div>
+      <div class="feature"><span class="feature-icon">🎨</span><div><div class="feature-name">UI Limits</div><div class="feature-desc">AppSheet couldn't represent the warehouse the way the team mentally modeled it — shelves, racks, capacity rules</div></div></div>
+      <div class="feature"><span class="feature-icon">🔓</span><div><div class="feature-name">Data Ownership</div><div class="feature-desc">As the dataset grew, having warehouse data locked inside a third-party SaaS became a real concern</div></div></div>
+      <div class="feature"><span class="feature-icon">🌐</span><div><div class="feature-name">Arabic-First UX</div><div class="feature-desc">Off-the-shelf tools never quite delivered the polished bilingual, RTL experience the team needed</div></div></div>
+    </div>
+  </section>
+
+  <!-- KEY FEATURES -->
+  <section class="section fade-in">
+    <div class="section-label">// Key Features</div>
+    <div class="features-grid">
+      <div class="feature"><span class="feature-icon">🇸🇦</span><div><div class="feature-name">Arabic-First Interface</div><div class="feature-desc">Fully RTL layout designed around how warehouse workers actually navigate the floor</div></div></div>
+      <div class="feature"><span class="feature-icon">🗄️</span><div><div class="feature-name">Custom Shelf/Rack Model</div><div class="feature-desc">Per-shelf capacity rules via a data-driven MaxPositions field — 6 for shelves, 12 for racks</div></div></div>
+      <div class="feature"><span class="feature-icon">📊</span><div><div class="feature-name">Excel-to-DB Sync</div><div class="feature-desc">Idempotent pipeline for recurring client spreadsheet imports — re-runnable without duplication</div></div></div>
+      <div class="feature"><span class="feature-icon">🔐</span><div><div class="feature-name">Role-Based Access</div><div class="feature-desc">Admin and warehouse-worker roles, secured by ASP.NET Core Identity</div></div></div>
+      <div class="feature"><span class="feature-icon">📄</span><div><div class="feature-name">PDF Inventory Exports</div><div class="feature-desc">Generated on demand via QuestPDF — clean, printable inventory snapshots</div></div></div>
+      <div class="feature"><span class="feature-icon">🧱</span><div><div class="feature-name">Domain-Driven Design</div><div class="feature-desc">Rich entities, private setters, factory methods, and DomainException middleware translating violations to Arabic</div></div></div>
+      <div class="feature"><span class="feature-icon">🎨</span><div><div class="feature-name">"Warm Editorial" Design</div><div class="feature-desc">Custom palette from the company logo · Fraunces for display · IBM Plex Sans Arabic for body</div></div></div>
+      <div class="feature"><span class="feature-icon">📝</span><div><div class="feature-name">Full Audit Tagging</div><div class="feature-desc">Every data change carries source, timestamp, and operator metadata for traceability</div></div></div>
+    </div>
+  </section>
+
+  <!-- EXCEL SYNC HIGHLIGHT -->
+  <section class="section fade-in">
+    <div class="section-label">// The Excel Sync Pipeline</div>
+    <div class="highlight" style="border-color:rgba(251,191,36,.2);background:linear-gradient(135deg,rgba(251,191,36,.05),rgba(217,119,6,.04))">
+      <div class="highlight-title" style="color:#fbbf24">PYTHON + OPENPYXL DATA PIPELINE</div>
+      <ul class="highlight-list">
+        <li style="--accent:#fbbf24">Parses the client's evolving Excel layout — handles shelf/rack structure, merged cells, and Arabic text</li>
+        <li style="--accent:#fbbf24">Runs a <strong>three-strategy product matcher</strong> — exact match, normalized match, and fuzzy match against the live DB</li>
+        <li style="--accent:#fbbf24">Emits <strong>idempotent SQL</strong> — every run can safely re-execute without creating duplicates or losing audit trails</li>
+        <li style="--accent:#fbbf24">Full audit tagging on each placement — source file, row number, and import timestamp baked in</li>
+        <li style="--accent:#fbbf24">Reconciliation report flags new products, missing placements, and capacity violations before commit</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section class="section fade-in">
+    <div class="section-label">// Architecture Highlights</div>
+    <div class="highlight">
+      <div class="highlight-title">ENGINEERING DECISIONS</div>
+      <ul class="highlight-list">
+        <li>Domain-Driven Design — rich entities with private setters and factory methods enforcing invariants</li>
+        <li>EF Core Fluent API mappings — full control over schema, indexes, and relationships</li>
+        <li>DomainException middleware — business rule violations surface as localized Arabic UI messages</li>
+        <li>Custom design system tokens — Tailwind config built on the company logo's warm palette</li>
+        <li>Serilog structured logging across application, sync, and identity events</li>
+        <li>Containerized deployment — Docker image hosted on Fly.io with a managed PostgreSQL on Neon.tech</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DESIGN SYSTEM -->
+  <section class="section fade-in">
+    <div class="section-label">// Design System — "Warm Editorial"</div>
+    <div class="features-grid">
+      <div class="feature"><span class="feature-icon">🎨</span><div><div class="feature-name">Logo-Sampled Palette</div><div class="feature-desc">Warm neutrals pulled directly from Manoly's brand mark — cohesion across product and identity</div></div></div>
+      <div class="feature"><span class="feature-icon">🅰️</span><div><div class="feature-name">Fraunces Display</div><div class="feature-desc">Editorial serif for headings — communicates seriousness and craftsmanship</div></div></div>
+      <div class="feature"><span class="feature-icon">🔤</span><div><div class="feature-name">IBM Plex Sans Arabic</div><div class="feature-desc">Pristine Arabic body type with perfect kerning for RTL — the warehouse team's daily reading font</div></div></div>
+      <div class="feature"><span class="feature-icon">↔️</span><div><div class="feature-name">Full RTL System</div><div class="feature-desc">Every component built right-to-left first — no LTR retrofit, no mirroring band-aids</div></div></div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="section fade-in">
+    <div class="section-label">// Tech Stack</div>
+    <div class="stack-wrap">
+      <span class="stack-tag" style="--stack-bg:rgba(251,191,36,.1);--stack-color:#fbbf24;--stack-border:rgba(251,191,36,.3)">ASP.NET Core 8 MVC</span>
+      <span class="stack-tag" style="--stack-bg:rgba(251,191,36,.1);--stack-color:#fbbf24;--stack-border:rgba(251,191,36,.3)">C#</span>
+      <span class="stack-tag" style="--stack-bg:rgba(251,191,36,.1);--stack-color:#fbbf24;--stack-border:rgba(251,191,36,.3)">PostgreSQL</span>
+      <span class="stack-tag" style="--stack-bg:rgba(251,191,36,.1);--stack-color:#fbbf24;--stack-border:rgba(251,191,36,.3)">EF Core</span>
+      <span class="stack-tag" style="--stack-bg:rgba(251,191,36,.1);--stack-color:#fbbf24;--stack-border:rgba(251,191,36,.3)">ASP.NET Identity</span>
+      <span class="stack-tag" style="--stack-bg:rgba(251,191,36,.1);--stack-color:#fbbf24;--stack-border:rgba(251,191,36,.3)">Tailwind CSS</span>
+      <span class="stack-tag" style="--stack-bg:rgba(251,191,36,.1);--stack-color:#fbbf24;--stack-border:rgba(251,191,36,.3)">QuestPDF</span>
+      <span class="stack-tag" style="--stack-bg:rgba(251,191,36,.1);--stack-color:#fbbf24;--stack-border:rgba(251,191,36,.3)">Serilog</span>
+      <span class="stack-tag" style="--stack-bg:rgba(251,191,36,.1);--stack-color:#fbbf24;--stack-border:rgba(251,191,36,.3)">Python</span>
+      <span class="stack-tag" style="--stack-bg:rgba(251,191,36,.1);--stack-color:#fbbf24;--stack-border:rgba(251,191,36,.3)">openpyxl</span>
+      <span class="stack-tag" style="--stack-bg:rgba(251,191,36,.1);--stack-color:#fbbf24;--stack-border:rgba(251,191,36,.3)">Docker</span>
+      <span class="stack-tag" style="--stack-bg:rgba(251,191,36,.1);--stack-color:#fbbf24;--stack-border:rgba(251,191,36,.3)">Fly.io</span>
+      <span class="stack-tag" style="--stack-bg:rgba(251,191,36,.1);--stack-color:#fbbf24;--stack-border:rgba(251,191,36,.3)">Neon.tech</span>
+    </div>
+  </section>
+
+  <div class="cta-row fade-in">
+    <a href="../index.html#contact" class="btn btn-primary" style="--cta-bg:#fbbf24;--cta-glow:rgba(251,191,36,.5);color:#000">✉ Discuss This Project</a>
+    <a href="../index.html#projects" class="btn btn-ghost">← Back to Projects</a>
+  </div>
+
+  <!-- OTHER PROJECTS -->
+  <section class="other-projects fade-in">
+    <div class="other-label">// Explore Other Projects</div>
+    <div class="other-grid">
+      <a href="physiolink.html" class="other-card"><span class="other-icon">🦴</span><div><div class="other-name">PhysioLink</div><div class="other-type">Full-Stack · Mobile + API</div></div></a>
+      <a href="maqam.html" class="other-card"><span class="other-icon">🎸</span><div><div class="other-name">Maqam</div><div class="other-type">E-Commerce · MVC</div></div></a>
+      <a href="aman.html" class="other-card"><span class="other-icon">🛡️</span><div><div class="other-name">Aman</div><div class="other-type">UI/UX · Case Study</div></div></a>
+      <a href="finder.html" class="other-card"><span class="other-icon">🤖</span><div><div class="other-name">Finder Pal</div><div class="other-type">Robotics · Capstone</div></div></a>
+    </div>
+  </section>
+
+</main>
+
+<footer><span>// Built with passion &amp; too much coffee — Fares Ibrahim © 2026</span></footer>
+
+<script>window.PARTICLE_COLOR='251,191,36';</script>
+<script src="project.js"></script>
+</body>
+</html>

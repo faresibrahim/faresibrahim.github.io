@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Finder Pal — Fares Ibrahim</title>
+<link rel="stylesheet" href="project.css"/>
+<style>body { --section-accent:#34d399; }</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<nav>
+  <a href="../index.html" class="logo">&lt;FARES /&gt;</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#about">About</a></li>
+    <li><a href="../index.html#projects">Projects</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+    <li><a href="../index.html#projects" class="nav-back">← All Projects</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="breadcrumb fade-in">
+    <a href="../index.html">~</a>
+    <span class="sep">/</span>
+    <a href="../index.html#projects">projects</a>
+    <span class="sep">/</span>
+    <span class="current">finder-pal</span>
+  </div>
+
+  <section class="project-hero hero-finder fade-in" style="--glow-color:rgba(16,185,129,.2);--hero-accent:#34d399;--hero-glow:rgba(52,211,153,.55)">
+    <svg class="hero-pattern" viewBox="0 0 1100 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="gp4" cx="70%" cy="50%"><stop offset="0%" stop-color="#10b981" stop-opacity=".22"/><stop offset="100%" stop-color="#10b981" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect width="1100" height="280" fill="url(#gp4)"/>
+      <g stroke="#34d399" stroke-width=".5" opacity=".15">
+        <line x1="0" y1="70" x2="1100" y2="70"/><line x1="0" y1="140" x2="1100" y2="140"/><line x1="0" y1="210" x2="1100" y2="210"/>
+        <line x1="110" y1="0" x2="110" y2="280"/><line x1="220" y1="0" x2="220" y2="280"/>
+        <line x1="330" y1="0" x2="330" y2="280"/><line x1="440" y1="0" x2="440" y2="280"/>
+        <line x1="550" y1="0" x2="550" y2="280"/><line x1="660" y1="0" x2="660" y2="280"/>
+        <line x1="770" y1="0" x2="770" y2="280"/><line x1="880" y1="0" x2="880" y2="280"/>
+        <line x1="990" y1="0" x2="990" y2="280"/>
+      </g>
+      <g fill="#34d399" opacity=".22">
+        <rect x="130" y="80" width="80" height="48" rx="3"/>
+        <rect x="240" y="80" width="80" height="48" rx="3"/>
+        <rect x="130" y="150" width="80" height="48" rx="3"/>
+        <rect x="350" y="80" width="80" height="48" rx="3"/>
+        <rect x="460" y="150" width="80" height="48" rx="3"/>
+        <rect x="350" y="150" width="80" height="48" rx="3"/>
+      </g>
+      <g stroke="#34d399" stroke-width="1.8" fill="none" stroke-dasharray="7,5" opacity=".35">
+        <path d="M820,250 L820,150 L700,150 L700,90 L880,90 L880,180 L990,180"/>
+      </g>
+      <g transform="translate(980,180)" opacity=".55">
+        <rect x="-16" y="-18" width="32" height="30" rx="4" fill="none" stroke="#34d399" stroke-width="1.5"/>
+        <circle cx="-6" cy="-8" r="3.5" fill="#34d399"/>
+        <circle cx="6" cy="-8" r="3.5" fill="#34d399"/>
+        <line x1="-16" y1="6" x2="-21" y2="6" stroke="#34d399" stroke-width="1.5"/>
+        <line x1="16" y1="6" x2="21" y2="6" stroke="#34d399" stroke-width="1.5"/>
+        <line x1="-8" y1="12" x2="-8" y2="18" stroke="#34d399" stroke-width="1.5"/>
+        <line x1="8" y1="12" x2="8" y2="18" stroke="#34d399" stroke-width="1.5"/>
+      </g>
+    </svg>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="project-type" style="--hero-accent:#34d399">Robotics · Computer Vision · Capstone</div>
+      <div class="hero-row">
+        <span class="hero-icon">🤖</span>
+        <h1 class="project-title">Finder Pal</h1>
+      </div>
+      <p class="tagline">An intelligent warehouse robot built as a senior capstone — autonomous navigation, vision-based item recognition, and precise placement.</p>
+      <div class="badges">
+        <span class="badge badge-done">✓ Completed</span>
+        <span class="badge badge-role">Team Member &amp; Web Designer</span>
+        <span class="badge badge-year">2024</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="meta-strip fade-in">
+    <div class="meta-item"><span class="meta-label">Type</span><span class="meta-value">Robotics Capstone</span></div>
+    <div class="meta-item"><span class="meta-label">Institution</span><span class="meta-value">Univ. of Mich.-Flint</span></div>
+    <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value meta-green">Completed</span></div>
+    <div class="meta-item"><span class="meta-label">Timeline</span><span class="meta-value">2024</span></div>
+    <div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">Team + Web</span></div>
+  </div>
+
+  <section class="section fade-in">
+    <div class="section-label">// Overview</div>
+    <h2 class="section-heading">Eyes, wheels, and a plan.</h2>
+    <div class="section-text">
+      <p>Finder Pal is an <strong>intelligent warehouse robot</strong> developed as the capstone project at the University of Michigan-Flint. The robot autonomously navigates warehouse aisles, identifies target items via an onboard camera using computer vision, and places them with precision at designated drop points.</p>
+      <p>I <strong>contributed to robot development</strong>, facilitated <strong>weekly team standups</strong>, and designed the <strong>team's project website</strong> from scratch using HTML, CSS, and JavaScript.</p>
+    </div>
+  </section>
+
+  <section class="section fade-in">
+    <div class="section-label">// Robot Capabilities</div>
+    <div class="features-grid">
+      <div class="feature"><span class="feature-icon">🧭</span><div><div class="feature-name">Autonomous Navigation</div><div class="feature-desc">Real-time path planning with obstacle detection and avoidance in dynamic warehouse environments</div></div></div>
+      <div class="feature"><span class="feature-icon">👁️</span><div><div class="feature-name">Computer Vision</div><div class="feature-desc">Onboard camera with image recognition to identify, locate, and classify target items on shelves</div></div></div>
+      <div class="feature"><span class="feature-icon">🎯</span><div><div class="feature-name">Precise Placement</div><div class="feature-desc">Accurate item retrieval and deposit — the robot confirms placement before marking a task complete</div></div></div>
+      <div class="feature"><span class="feature-icon">⚡</span><div><div class="feature-name">Real-Time Processing</div><div class="feature-desc">On-device computation for navigation and vision — no cloud dependency for core operations</div></div></div>
+    </div>
+  </section>
+
+  <section class="section fade-in">
+    <div class="section-label">// My Contributions</div>
+    <div class="features-grid">
+      <div class="feature"><span class="feature-icon">🤖</span><div><div class="feature-name">Robot Development</div><div class="feature-desc">Contributed to hardware integration and software implementation for navigation and vision subsystems</div></div></div>
+      <div class="feature"><span class="feature-icon">🗣️</span><div><div class="feature-name">Team Leadership</div><div class="feature-desc">Led weekly standups, tracked milestones, and ensured alignment across team members</div></div></div>
+      <div class="feature"><span class="feature-icon">🌐</span><div><div class="feature-name">Website Design</div><div class="feature-desc">Designed and built the team's project website — HTML, CSS, and JavaScript from scratch</div></div></div>
+      <div class="feature"><span class="feature-icon">📄</span><div><div class="feature-name">Documentation</div><div class="feature-desc">Maintained technical documentation, progress reports, and milestone deliverables</div></div></div>
+    </div>
+  </section>
+
+  <section class="section fade-in">
+    <div class="section-label">// Project Context</div>
+    <div class="highlight" style="border-color:rgba(52,211,153,.2);background:linear-gradient(135deg,rgba(16,185,129,.05),rgba(52,211,153,.04))">
+      <div class="highlight-title" style="color:#34d399">CAPSTONE CONTEXT</div>
+      <ul class="highlight-list">
+        <li style="--accent:#34d399">Developed as the senior capstone project at University of Michigan-Flint</li>
+        <li>Cross-disciplinary team combining robotics, computer science, and engineering</li>
+        <li>Demonstrated live in a simulated warehouse environment at project showcase</li>
+        <li>Project repository maintained on GitHub under the team organization</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section fade-in">
+    <div class="section-label">// Technologies</div>
+    <div class="stack-wrap">
+      <span class="stack-tag">Robotics</span><span class="stack-tag">Computer Vision</span>
+      <span class="stack-tag">Autonomous Navigation</span><span class="stack-tag">Image Recognition</span>
+      <span class="stack-tag">HTML</span><span class="stack-tag">CSS</span>
+      <span class="stack-tag">JavaScript</span>
+    </div>
+  </section>
+
+  <div class="cta-row fade-in">
+    <a href="https://github.com/eritsen/FinderPal" target="_blank" class="btn btn-primary" style="--cta-bg:#10b981;--cta-glow:rgba(16,185,129,.5);color:#fff">View on GitHub ↗</a>
+    <a href="../index.html#contact" class="btn btn-ghost">✉ Ask Me About This</a>
+    <a href="../index.html#projects" class="btn btn-ghost">← Back to Projects</a>
+  </div>
+
+  <section class="other-projects fade-in">
+    <div class="other-label">// Explore Other Projects</div>
+    <div class="other-grid">
+      <a href="physiolink.html" class="other-card"><span class="other-icon">🦴</span><div><div class="other-name">PhysioLink</div><div class="other-type">Full-Stack · Mobile + API</div></div></a>
+      <a href="manoly.html" class="other-card"><span class="other-icon">📦</span><div><div class="other-name">Manoly Warehouse</div><div class="other-type">Inventory · ASP.NET</div></div></a>
+      <a href="maqam.html" class="other-card"><span class="other-icon">🎸</span><div><div class="other-name">Maqam</div><div class="other-type">E-Commerce · MVC</div></div></a>
+      <a href="aman.html" class="other-card"><span class="other-icon">🛡️</span><div><div class="other-name">Aman</div><div class="other-type">UI/UX · Case Study</div></div></a>
+    </div>
+  </section>
+
+</main>
+
+<footer><span>// Built with passion &amp; too much coffee — Fares Ibrahim © 2026</span></footer>
+
+<script>window.PARTICLE_COLOR='52,211,153';</script>
+<script src="project.js"></script>
+</body>
+</html>
