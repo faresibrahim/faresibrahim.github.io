@@ -103,9 +103,20 @@
   .project-link { color:var(--muted); text-decoration:none; font-size:.8rem; transition:.3s; border:1px solid var(--border); padding:.28rem .65rem; border-radius:6px; font-family:var(--font-mono); }
   .project-link:hover { color:var(--accent); border-color:var(--accent); }
   .project-name { font-size:1.15rem; font-weight:700; color:var(--text); }
+  .project-for { font-family:var(--font-mono); font-size:.72rem; letter-spacing:.5px; color:var(--accent); }
+  .project-for span { color:var(--muted); }
   .project-desc { color:var(--muted); font-size:.9rem; line-height:1.7; }
   .project-stack { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:auto; padding-top:.25rem; }
   .stack-tag { background:rgba(124,58,237,.12); color:#a78bfa; border:1px solid rgba(124,58,237,.25); border-radius:20px; padding:.25rem .65rem; font-size:.72rem; font-family:var(--font-mono); }
+
+  /* TESTIMONIALS */
+  .testimonials-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; }
+  .testimonial-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:1.75rem; transition:.3s; display:flex; flex-direction:column; gap:1rem; position:relative; }
+  .testimonial-card:hover { border-color:var(--accent); transform:translateY(-4px); box-shadow:0 8px 30px rgba(0,212,255,.1); }
+  .testimonial-quote { color:var(--text); font-size:.95rem; line-height:1.8; font-style:italic; }
+  .testimonial-quote::before { content:'“'; color:var(--accent); font-size:2rem; font-family:Georgia,serif; margin-right:.15rem; vertical-align:-.4rem; }
+  .testimonial-author { font-weight:700; font-size:.9rem; color:var(--text); }
+  .testimonial-role { font-family:var(--font-mono); font-size:.72rem; color:var(--accent); letter-spacing:1px; margin-top:.2rem; }
 
   /* EXPERIENCE */
   .timeline { position:relative; padding-left:2rem; }
@@ -162,11 +173,11 @@
   <div class="logo">&lt;FARES /&gt;</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#courses">Courses</a></li>
-    <li><a href="#hobbies">Hobbies</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -176,7 +187,7 @@
   <div class="hero-pre">// Hello, World!</div>
   <h1 class="hero-name">Fares Ibrahim</h1>
   <div class="hero-title"><span id="typed"></span><span class="cursor"></span></div>
-  <p class="hero-desc">Junior Full-Stack Developer building real-world apps with Flutter &amp; ASP.NET Core. Passionate about clean architecture, great UX, and shipping things that matter.</p>
+  <p class="hero-desc">I build custom mobile and business software for companies that want to replace manual workflows — Flutter mobile apps and ASP.NET Core backend systems that turn spreadsheets, paper, and no-code tools into software you own.</p>
   <div class="hero-btns">
     <a href="#projects" class="btn btn-primary">View Projects</a>
     <a href="#contact" class="btn btn-outline">Get In Touch</a>
@@ -201,10 +212,41 @@
         </div>
       </div>
       <div class="about-text">
-        <p>I'm a junior full-stack developer specializing in <span>Flutter</span> for cross-platform mobile and <span>ASP.NET Core</span> for robust backend APIs.</p>
-        <p>Currently building <span>PhysioLink</span> — a physiotherapy clinic management platform — as my flagship portfolio project, covering everything from mobile UX to multi-tenant backend architecture.</p>
-        <p>At <span>CDG Group</span>, I work at the intersection of engineering, digital systems, and business development — transforming complex technical information into clear, scalable outputs and building internal tools that improve efficiency.</p>
-        <p>I build things that work — and work well. Every project is an opportunity to sharpen my craft, ship cleaner code, and grow closer to the developer I'm becoming.</p>
+        <p>I'm a full-stack developer specializing in <span>Flutter</span> mobile applications and <span>ASP.NET Core</span> backend systems.</p>
+        <p>I build custom software solutions for businesses — from mobile applications to internal management systems like <span>Manoly Warehouse</span> and <span>PhysioLink</span>, covering everything from mobile UX to multi-tenant backend architecture.</p>
+        <p>At <span>CDG Group</span>, I translate business requirements into digital solutions, internal tools, and structured workflows that improve how the organization operates day to day.</p>
+        <p>My focus is building reliable software that solves real operational problems and creates measurable value.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="fade-in">
+    <div class="section-label">// 02</div>
+    <h2 class="section-title">Services</h2>
+    <div class="courses-grid">
+      <div class="course-card">
+        <div class="course-icon">📱</div>
+        <div>
+          <div class="course-name">Mobile Applications</div>
+          <div class="hobby-org">Custom Flutter apps for startups and businesses — from patient-facing healthcare apps to field tools your team actually uses.</div>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-icon">🗄️</div>
+        <div>
+          <div class="course-name">Business Systems</div>
+          <div class="hobby-org">Inventory systems, admin dashboards, management systems, and internal tools built around how your business already works.</div>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-icon">🔄</div>
+        <div>
+          <div class="course-name">Digital Transformation</div>
+          <div class="hobby-org">Replacing manual spreadsheets, paper, and repetitive processes with software — and giving you full ownership of your data.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -213,50 +255,37 @@
 <!-- SKILLS -->
 <section id="skills">
   <div class="fade-in">
-    <div class="section-label">// 02</div>
+    <div class="section-label">// 03</div>
     <h2 class="section-title">Skills</h2>
     <div class="skills-grid">
       <div class="skill-group">
-        <div class="skill-group-title">MOBILE</div>
+        <div class="skill-group-title">MOBILE APPLICATIONS</div>
         <div class="skill-tags">
-          <span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Riverpod</span>
-          <span class="tag">go_router</span><span class="tag">Freezed</span>
+          <span class="tag">Flutter</span><span class="tag">Dart</span>
+          <span class="tag">Cross-platform</span><span class="tag">State Management</span>
+          <span class="tag">Responsive UI</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-title">BACKEND</div>
+        <div class="skill-group-title">BACKEND SYSTEMS</div>
         <div class="skill-tags">
-          <span class="tag">ASP.NET Core</span><span class="tag">C#</span><span class="tag">EF Core</span>
-          <span class="tag">REST APIs</span><span class="tag">JWT Auth</span>
+          <span class="tag">ASP.NET Core</span><span class="tag">REST APIs</span>
+          <span class="tag">Authentication</span><span class="tag">Database Design</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-title">ARCHITECTURE</div>
+        <div class="skill-group-title">BUSINESS SOLUTIONS</div>
         <div class="skill-tags">
-          <span class="tag">Clean Architecture</span><span class="tag">Repository Pattern</span>
-          <span class="tag">LINQ</span><span class="tag">DI</span>
+          <span class="tag">Inventory Systems</span><span class="tag">Admin Dashboards</span>
+          <span class="tag">Workflow Automation</span><span class="tag">Internal Tools</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-title">DATABASE</div>
+        <div class="skill-group-title">TECHNOLOGIES</div>
         <div class="skill-tags">
-          <span class="tag">SQL Server</span><span class="tag">EF Core Migrations</span>
-          <span class="tag">Query Filters</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">DESIGN & DIGITAL</div>
-        <div class="skill-tags">
-          <span class="tag">UI/UX Design</span><span class="tag">Figma</span><span class="tag">Brevo</span>
-          <span class="tag">SEO</span><span class="tag">AppSheet</span><span class="tag">AI Tools</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">TOOLS</div>
-        <div class="skill-tags">
-          <span class="tag">Git</span><span class="tag">GitHub</span>
-          <span class="tag">Docker</span><span class="tag">Linux</span>
-          <span class="tag">Postman</span><span class="tag">VS Code</span>
+          <span class="tag">C#</span><span class="tag">EF Core</span><span class="tag">SQL Server</span>
+          <span class="tag">PostgreSQL</span><span class="tag">Riverpod</span><span class="tag">Docker</span>
+          <span class="tag">Git</span><span class="tag">Figma</span>
         </div>
       </div>
     </div>
@@ -266,25 +295,9 @@
 <!-- PROJECTS -->
 <section id="projects">
   <div class="fade-in">
-    <div class="section-label">// 03</div>
+    <div class="section-label">// 04</div>
     <h2 class="section-title">Projects</h2>
     <div class="projects-grid">
-
-      <!-- PhysioLink -->
-      <a href="projects/physiolink.html" class="project-card">
-        <div class="project-header">
-          <span class="project-icon">🦴</span>
-          <span class="project-link">View Details ↗</span>
-        </div>
-        <div class="project-name">PhysioLink</div>
-        <div class="project-desc">A full-stack physiotherapy clinic management platform. Flutter patient mobile app + ASP.NET Core REST API with multi-tenant architecture, appointment management, and exercise assignment.</div>
-        <div class="project-stack">
-          <span class="stack-tag">Flutter</span><span class="stack-tag">ASP.NET Core</span>
-          <span class="stack-tag">EF Core</span><span class="stack-tag">SQL Server</span>
-          <span class="stack-tag">JWT</span><span class="stack-tag">Riverpod</span>
-        </div>
-        <span class="project-card-cta">EXPLORE ↗</span>
-      </a>
 
       <!-- Manoly Warehouse -->
       <a href="projects/manoly.html" class="project-card">
@@ -293,7 +306,8 @@
           <span class="project-link">View Details ↗</span>
         </div>
         <div class="project-name">Manoly Warehouse — مخزن منولي</div>
-        <div class="project-desc">A bilingual (Arabic-first, RTL) warehouse management system for Manoly International Wood, tracking ~430 products across 432 shelf locations. Built to replace a costly AppSheet setup with full data ownership and a custom UI.</div>
+        <div class="project-for">For: <span>Warehouses &amp; businesses managing inventory</span></div>
+        <div class="project-desc">Built a custom warehouse management system that replaced a costly no-code solution, giving Manoly International Wood full ownership of its inventory data and workflows — bilingual (Arabic-first, RTL), tracking ~430 products across 432 shelf locations.</div>
         <div class="project-stack">
           <span class="stack-tag">ASP.NET Core 8</span>
           <span class="stack-tag">PostgreSQL</span>
@@ -305,6 +319,23 @@
         <span class="project-card-cta">EXPLORE ↗</span>
       </a>
 
+      <!-- PhysioLink -->
+      <a href="projects/physiolink.html" class="project-card">
+        <div class="project-header">
+          <span class="project-icon">🦴</span>
+          <span class="project-link">View Details ↗</span>
+        </div>
+        <div class="project-name">PhysioLink</div>
+        <div class="project-for">For: <span>Physiotherapy clinics &amp; healthcare providers</span></div>
+        <div class="project-desc">A full-stack physiotherapy clinic management platform. Flutter patient mobile app + ASP.NET Core REST API with multi-tenant architecture, appointment management, and exercise assignment.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Flutter</span><span class="stack-tag">ASP.NET Core</span>
+          <span class="stack-tag">EF Core</span><span class="stack-tag">SQL Server</span>
+          <span class="stack-tag">JWT</span><span class="stack-tag">Riverpod</span>
+        </div>
+        <span class="project-card-cta">EXPLORE ↗</span>
+      </a>
+
       <!-- Maqam -->
       <a href="projects/maqam.html" class="project-card">
         <div class="project-header">
@@ -312,6 +343,7 @@
           <span class="project-link">View Details ↗</span>
         </div>
         <div class="project-name">Maqam — Music E-Commerce</div>
+        <div class="project-for">For: <span>Retailers selling products online</span></div>
         <div class="project-desc">A full-stack e-commerce web application for musical instruments. Features product catalog browsing, category filtering, shopping cart, order processing, and role-based authentication.</div>
         <div class="project-stack">
           <span class="stack-tag">ASP.NET Core MVC</span>
@@ -329,6 +361,7 @@
           <span class="project-link">View Details ↗</span>
         </div>
         <div class="project-name">Aman (أمان) — Mental Health App</div>
+        <div class="project-for">For: <span>Nonprofits &amp; support organizations</span></div>
         <div class="project-desc">A UI/UX case study for a mobile app designed for women who have experienced abuse, assault, or trauma. Research-driven through user interviews, personas, and competitive analysis.</div>
         <div class="project-stack">
           <span class="stack-tag">Figma</span>
@@ -347,6 +380,7 @@
           <span class="project-link">View Details ↗</span>
         </div>
         <div class="project-name">Finder Pal — Warehouse Robot</div>
+        <div class="project-for">For: <span>Academic &amp; robotics research</span></div>
         <div class="project-desc">A capstone project at University of Michigan-Flint. An intelligent warehouse robot capable of autonomous navigation, object recognition via camera, and precise item placement.</div>
         <div class="project-stack">
           <span class="stack-tag">Robotics</span>
@@ -361,10 +395,46 @@
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<!--
+  ⚠️ PLACEHOLDER QUOTES BELOW — replace the quote text and author names/roles with
+  REAL words and real people from your actual clients before publishing.
+  Do not present invented quotes as genuine client feedback.
+-->
+<section id="testimonials">
+  <div class="fade-in">
+    <div class="section-label">// 05</div>
+    <h2 class="section-title">Client Feedback</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-quote">Fares understood our workflow and built a system that improved how we manage our inventory and operations.</p>
+        <div>
+          <div class="testimonial-author">[Client Name]</div>
+          <div class="testimonial-role">Manoly International Wood</div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-quote">He replaced the tools we were paying for with something built around exactly how we work — and we own our data now.</p>
+        <div>
+          <div class="testimonial-author">[Client Name]</div>
+          <div class="testimonial-role">Business Owner</div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-quote">Clear communication, delivered what he promised, and made the whole process easy to follow.</p>
+        <div>
+          <div class="testimonial-author">[Client Name]</div>
+          <div class="testimonial-role">Project Client</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="fade-in">
-    <div class="section-label">// 04</div>
+    <div class="section-label">// 06</div>
     <h2 class="section-title">Experience</h2>
     <div class="timeline">
 
@@ -379,7 +449,7 @@
           <li>Design and maintain structured templates for proposals, company profiles, and CVs aligned with international standards and RFP requirements.</li>
           <li>Build lightweight internal tools using spreadsheets, advanced formulas, and no-code platforms like AppSheet — introducing logic-based workflows for HR and administrative processes.</li>
           <li>Apply AI tools to support content generation, automate repetitive tasks, and enhance decision-making across daily workflows.</li>
-          <li>Transform engineering data, project documentation, and institutional knowledge into clear, scalable digital outputs.</li>
+          <li>Translate business requirements into digital solutions, internal tools, and structured workflows.</li>
         </ul>
       </div>
 
@@ -402,7 +472,7 @@
 <!-- COURSES -->
 <section id="courses">
   <div class="fade-in">
-    <div class="section-label">// 05</div>
+    <div class="section-label">// 07</div>
     <h2 class="section-title">Courses</h2>
     <div class="courses-grid">
       <div class="course-card">
@@ -433,7 +503,7 @@
 <!-- HOBBIES -->
 <section id="hobbies">
   <div class="fade-in">
-    <div class="section-label">// 06</div>
+    <div class="section-label">// 08</div>
     <h2 class="section-title">Beyond the Code</h2>
     <div class="courses-grid">
       <div class="course-card">
@@ -457,11 +527,11 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="fade-in">
-    <div class="section-label">// 07</div>
+    <div class="section-label">// 09</div>
     <h2 class="section-title">Contact</h2>
     <div class="contact-wrap">
-      <div class="contact-title">Let's build something together.</div>
-      <p class="contact-sub">I'm open to freelance opportunities, collaborations, and interesting projects. Drop me a message anytime.</p>
+      <div class="contact-title">Have a business process that needs software? Let's discuss it.</div>
+      <p class="contact-sub">Whether you're replacing spreadsheets, digitizing operations, or building a mobile app from scratch — tell me what your business needs and I'll help you build it.</p>
       <a href="mailto:fares.a.ibrahim@gmail.com" class="btn btn-primary">✉ Say Hello</a>
       <div class="social-links">
         <a href="https://github.com/faresibrahim" target="_blank" class="social-btn">⌥ GitHub</a>
@@ -508,7 +578,7 @@
   window.addEventListener('resize',()=>{resize();initParticles();});
 
   /* ---- Typewriter ---- */
-  const phrases=['Junior Full-Stack Developer','Flutter + ASP.NET Core','Building PhysioLink 🦴','Freelance-Ready in 2026'];
+  const phrases=['Full-Stack Developer','Mobile Apps + Business Systems','Replacing manual workflows','Flutter + ASP.NET Core'];
   let pi=0,ci=0,deleting=false;
   const el=document.getElementById('typed');
   function type(){
